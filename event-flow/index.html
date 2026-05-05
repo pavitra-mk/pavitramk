@@ -7,20 +7,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
+/* ====== BASE VARIABLES — LUXE EMERALD × GOLD × MIDNIGHT ====== */
 :root {
-  --g1:#FF6B6B; --g2:#FFD93D; --g3:#6BCB77; --g4:#4D96FF;
-  --gold:#FFD15C; --gold2:#F5A623; --gold3:#FFF3C4;
-  --violet:#7C3AED; --violet2:#5B21B6; --v3:#DDD6FE;
-  --pink:#EC4899; --pink2:#DB2777;
-  --teal:#0D9488; --teal3:#CCFBF1;
-  --sky:#0EA5E9; --sky3:#E0F2FE;
-  --green:#10B981; --green3:#D1FAE5;
-  --orange:#F59E0B; --rose:#F43F5E;
-  --indigo:#6366F1;
-  --bg:#06060F; --bg2:#0C0C1A; --surface:#13132A;
-  --surface2:#1A1A35; --surface3:#212140;
-  --border:rgba(124,58,237,.2); --border2:rgba(255,255,255,.06);
-  --text:#F5F3FF; --text2:#A9A3C4; --text3:#5C5478;
+  --g1:#00FFB2; --g2:#FFD700; --g3:#00E5FF; --g4:#FF6B9D;
+  --gold:#F0C040; --gold2:#D4A017; --gold3:#FFF8DC;
+  --violet:#0A2540; --violet2:#051728; --v3:#A8D8EA;
+  --pink:#FF6B9D; --pink2:#E0557D;
+  --teal:#00C9A7; --teal3:#B2F5EA;
+  --sky:#00E5FF; --sky3:#E0FAFF;
+  --green:#00FFB2; --green3:#CCFFE8;
+  --orange:#FFB347; --rose:#FF4D6D;
+  --indigo:#1A3A5C;
+  --bg:#030D1A; --bg2:#04111F; --surface:#081828;
+  --surface2:#0C2235; --surface3:#0F2A40;
+  --border:rgba(0,201,167,.22); --border2:rgba(255,255,255,.07);
+  --text:#F0F8FF; --text2:#8FBCCC; --text3:#3D6B80;
   --r8:8px; --r12:12px; --r16:16px; --r20:20px; --r28:28px; --r40:40px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -32,43 +33,43 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none;}
 input,select,textarea{font-family:inherit;outline:none;}
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--bg2);}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--violet),var(--pink));border-radius:3px;}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--teal),var(--gold));border-radius:3px;}
 
 /* ====== LOADER ====== */
 #loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s ease;}
 #loader.hide{opacity:0;pointer-events:none;}
-.ld-ring{width:80px;height:80px;border-radius:50%;border:3px solid transparent;border-top:3px solid var(--gold);border-right:3px solid var(--pink);animation:spin 1s linear infinite;margin-bottom:1.5rem;}
+.ld-ring{width:80px;height:80px;border-radius:50%;border:3px solid transparent;border-top:3px solid var(--teal);border-right:3px solid var(--gold);animation:spin 1s linear infinite;margin-bottom:1.5rem;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.ld-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,var(--gold),var(--pink),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
+.ld-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
 .ld-sub{font-size:.75rem;color:var(--text3);letter-spacing:4px;text-transform:uppercase;}
 
 /* ====== PAGE TRANSITION ====== */
 #pageTransition{position:fixed;inset:0;z-index:9500;pointer-events:none;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s;}
 #pageTransition.active{opacity:1;pointer-events:all;}
-.pt-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.95),rgba(236,72,153,.95));transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.77,0,.18,1);}
+.pt-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.95),rgba(240,192,64,.95));transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.77,0,.18,1);}
 #pageTransition.active .pt-bg{transform:scaleY(1);}
 .pt-icon{font-size:4rem;position:relative;z-index:1;animation:ptpulse .4s ease infinite alternate;}
 @keyframes ptpulse{from{transform:scale(.9);}to{transform:scale(1.1);}}
 
 /* ====== NAV ====== */
-#nav{position:fixed;top:0;left:0;right:0;z-index:9000;height:70px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(6,6,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);transition:all .3s;}
-#nav.scrolled{background:rgba(6,6,15,.97);box-shadow:0 4px 30px rgba(0,0,0,.5);}
+#nav{position:fixed;top:0;left:0;right:0;z-index:9000;height:70px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(3,13,26,.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);transition:all .3s;}
+#nav.scrolled{background:rgba(3,13,26,.98);box-shadow:0 4px 30px rgba(0,0,0,.5);}
 .nb{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;cursor:pointer;user-select:none;}
-.nb .ef{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.nb .fw{background:linear-gradient(135deg,var(--v3),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nb .ef{background:linear-gradient(135deg,#00C9A7,#00E5FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nb .fw{background:linear-gradient(135deg,#F0C040,#FF6B9D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .nls{display:flex;gap:.15rem;}
 .nl{padding:.45rem .95rem;border-radius:var(--r8);font-size:.85rem;font-weight:500;color:var(--text2);cursor:pointer;transition:all .2s;position:relative;}
-.nl::after{content:'';position:absolute;bottom:2px;left:50%;right:50%;height:2px;background:linear-gradient(90deg,var(--gold),var(--pink));border-radius:1px;transition:all .3s;}
+.nl::after{content:'';position:absolute;bottom:2px;left:50%;right:50%;height:2px;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:1px;transition:all .3s;}
 .nl:hover::after,.nl.on::after{left:10%;right:10%;}
-.nl:hover,.nl.on{color:var(--gold);}
+.nl:hover,.nl.on{color:var(--teal);}
 .nav-r{display:flex;align-items:center;gap:.75rem;}
 .tbtn{width:38px;height:38px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .2s;}
-.tbtn:hover{background:rgba(255,209,92,.15);}
-.nbk{padding:.5rem 1.3rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);border-radius:var(--r8);font-weight:700;font-size:.85rem;transition:all .25s;}
-.nbk:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(255,209,92,.5);}
+.tbtn:hover{background:rgba(0,201,167,.15);}
+.nbk{padding:.5rem 1.3rem;background:linear-gradient(135deg,var(--teal),var(--gold));color:var(--bg);border-radius:var(--r8);font-weight:700;font-size:.85rem;transition:all .25s;}
+.nbk:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,201,167,.5);}
 .hmbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
 .hmbg span{width:22px;height:2px;background:var(--text);border-radius:1px;transition:all .3s;}
-.mob{display:none;position:fixed;top:70px;left:0;right:0;z-index:8999;background:rgba(6,6,15,.98);backdrop-filter:blur(24px);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:.4rem;border-bottom:1px solid var(--border2);}
+.mob{display:none;position:fixed;top:70px;left:0;right:0;z-index:8999;background:rgba(3,13,26,.98);backdrop-filter:blur(24px);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:.4rem;border-bottom:1px solid var(--border2);}
 .mob.open{display:flex;}
 .mob .nl{font-size:.95rem;padding:.7rem 1rem;}
 
@@ -93,73 +94,73 @@ input,select,textarea{font-family:inherit;outline:none;}
 .stagger-6{transition-delay:.6s!important;}
 
 /* ====== BUTTONS ====== */
-.bg-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-weight:700;font-size:.95rem;transition:all .3s;border:none;position:relative;overflow:hidden;}
-.bg-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--pink),var(--violet));opacity:0;transition:opacity .3s;}
+.bg-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--teal),var(--gold));color:var(--bg);font-weight:700;font-size:.95rem;transition:all .3s;border:none;position:relative;overflow:hidden;}
+.bg-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold),var(--teal));opacity:0;transition:opacity .3s;}
 .bg-btn:hover::before{opacity:1;}
-.bg-btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(255,209,92,.5);}
+.bg-btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,201,167,.5);}
 .bg-btn span,.bg-btn i{position:relative;z-index:1;}
 .bv{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--violet),var(--violet2));color:#fff;font-weight:700;font-size:.95rem;transition:all .3s;border:none;}
-.bv:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(124,58,237,.5);}
+.bv:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(0,229,255,.3);}
 .bp{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;font-weight:700;font-size:.95rem;transition:all .3s;border:none;}
-.bp:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(236,72,153,.5);}
+.bp:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(255,107,157,.5);}
 .bt{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.75rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--teal),#0f766e);color:#fff;font-weight:700;font-size:.875rem;transition:all .3s;border:none;}
-.bt:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(13,148,136,.5);}
+.bt:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,201,167,.5);}
 .bo{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:var(--r12);background:transparent;color:var(--text);border:1.5px solid rgba(255,255,255,.2);font-weight:600;font-size:.95rem;transition:all .3s;}
-.bo:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px);}
+.bo:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-3px);}
 .bwa{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.75rem;border-radius:var(--r12);background:#25D366;color:#fff;font-weight:700;font-size:.9rem;transition:all .3s;border:none;}
 .bwa:hover{background:#128C7E;transform:translateY(-3px);box-shadow:0 8px 25px rgba(37,211,102,.45);}
 .bsm{padding:.5rem 1.2rem;font-size:.8rem;border-radius:var(--r8);}
-.glow-btn{position:relative;padding:.9rem 2.2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--gold),var(--pink),var(--violet));color:#fff;font-weight:800;font-size:1rem;border:none;cursor:pointer;transition:all .3s;overflow:hidden;display:inline-flex;align-items:center;gap:.5rem;}
-.glow-btn::before{content:'';position:absolute;inset:-4px;border-radius:var(--r16);background:linear-gradient(135deg,var(--gold),var(--pink),var(--violet));z-index:-1;filter:blur(12px);opacity:0;transition:opacity .3s;}
+.glow-btn{position:relative;padding:.9rem 2.2rem;border-radius:var(--r12);background:linear-gradient(135deg,var(--teal),var(--gold),var(--pink));color:var(--bg);font-weight:800;font-size:1rem;border:none;cursor:pointer;transition:all .3s;overflow:hidden;display:inline-flex;align-items:center;gap:.5rem;}
+.glow-btn::before{content:'';position:absolute;inset:-4px;border-radius:var(--r16);background:linear-gradient(135deg,var(--gold),var(--teal),var(--sky));z-index:-1;filter:blur(12px);opacity:0;transition:opacity .3s;}
 .glow-btn:hover::before{opacity:1;}
-.glow-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(255,209,92,.4);}
+.glow-btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,201,167,.5);}
 
 /* ====== SECTIONS ====== */
 .sec{padding:5.5rem 2rem;}
 .inn{max-width:1260px;margin:0 auto;}
-.sb{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--v3);margin-bottom:.85rem;}
+.sb{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--teal3);margin-bottom:.85rem;}
 .sb i{font-size:.6rem;}
 .st{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.12;margin-bottom:1rem;}
 .ss{color:var(--text2);font-size:1rem;line-height:1.8;max-width:580px;}
 .alt{background:var(--bg2);}
 .gt-gold{background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .gt-pink{background:linear-gradient(135deg,var(--pink),var(--rose));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gt-violet{background:linear-gradient(135deg,var(--v3),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.gt-multi{background:linear-gradient(135deg,var(--gold),var(--pink),var(--violet));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.dline{height:1px;background:linear-gradient(90deg,transparent,var(--violet),var(--pink),var(--gold),transparent);}
+.gt-violet{background:linear-gradient(135deg,var(--teal3),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.gt-multi{background:linear-gradient(135deg,var(--teal),var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.dline{height:1px;background:linear-gradient(90deg,transparent,var(--teal),var(--gold),var(--pink),transparent);}
 
 /* ====== CARDS ====== */
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);overflow:hidden;transition:all .35s;cursor:pointer;}
-.card:hover{transform:translateY(-8px);border-color:rgba(124,58,237,.5);box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 40px rgba(124,58,237,.2);}
+.card:hover{transform:translateY(-8px);border-color:rgba(0,201,167,.5);box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 40px rgba(0,201,167,.2);}
 .cw{overflow:hidden;position:relative;}
 .ci{width:100%;height:220px;object-fit:cover;display:block;transition:transform .6s;}
 .card:hover .ci{transform:scale(1.08);}
 .cib{position:absolute;top:12px;left:12px;padding:.3rem .8rem;border-radius:50px;font-size:.7rem;font-weight:800;backdrop-filter:blur(12px);}
 .clove{position:absolute;top:12px;right:12px;width:34px;height:34px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer;transition:all .2s;}
-.clove:hover{background:rgba(244,63,94,.35);color:var(--rose);transform:scale(1.1);}
+.clove:hover{background:rgba(255,77,109,.35);color:var(--rose);transform:scale(1.1);}
 .cb{padding:1.4rem;}
 .ct{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.5rem;line-height:1.3;}
 .cm{font-size:.8rem;color:var(--text3);display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:.85rem;}
-.cm i{color:var(--v3);margin-right:.25rem;}
+.cm i{color:var(--teal3);margin-right:.25rem;}
 .cp{font-size:1.1rem;font-weight:800;color:var(--gold);}
 .cf{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border2);}
 
 /* TAGS */
 .tag{display:inline-block;padding:.3rem .9rem;border-radius:50px;font-size:.73rem;font-weight:700;}
-.tg{background:rgba(255,209,92,.15);color:var(--gold);}
-.tv{background:rgba(124,58,237,.18);color:var(--v3);}
-.tp{background:rgba(236,72,153,.15);color:var(--pink);}
-.tt{background:rgba(13,148,136,.15);color:var(--teal3);}
-.ts{background:rgba(14,165,233,.15);color:var(--sky);}
-.to{background:rgba(245,158,11,.15);color:var(--orange);}
+.tg{background:rgba(240,192,64,.15);color:var(--gold);}
+.tv{background:rgba(0,229,255,.12);color:var(--sky);}
+.tp{background:rgba(255,107,157,.15);color:var(--pink);}
+.tt{background:rgba(0,201,167,.15);color:var(--teal3);}
+.ts{background:rgba(0,229,255,.12);color:var(--sky);}
+.to{background:rgba(255,179,71,.15);color:var(--orange);}
 
 /* BADGE */
 .bdg{display:inline-block;padding:.25rem .75rem;border-radius:50px;font-size:.73rem;font-weight:800;}
-.bgg{background:rgba(16,185,129,.15);color:var(--green);}
-.bga{background:rgba(255,209,92,.15);color:var(--gold);}
-.bgr{background:rgba(244,63,94,.15);color:var(--rose);}
-.bgv{background:rgba(124,58,237,.18);color:var(--v3);}
-.bgp{background:rgba(236,72,153,.15);color:var(--pink);}
+.bgg{background:rgba(0,255,178,.15);color:var(--green);}
+.bga{background:rgba(240,192,64,.15);color:var(--gold);}
+.bgr{background:rgba(255,77,109,.15);color:var(--rose);}
+.bgv{background:rgba(0,229,255,.12);color:var(--sky);}
+.bgp{background:rgba(255,107,157,.15);color:var(--pink);}
 
 /* GRIDS */
 .g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
@@ -170,44 +171,53 @@ input,select,textarea{font-family:inherit;outline:none;}
 .fg{margin-bottom:1.25rem;}
 .fl{display:block;font-size:.85rem;font-weight:600;color:var(--text2);margin-bottom:.5rem;}
 .fi,.fs,.fta{width:100%;padding:.875rem 1.1rem;background:var(--surface2);border:1.5px solid var(--border2);border-radius:var(--r8);color:var(--text);font-size:.9rem;transition:all .2s;}
-.fi:focus,.fs:focus,.fta:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.15);}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,.15);}
 .fta{resize:vertical;min-height:110px;}
 .fs option{background:var(--surface2);color:var(--text);}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.ferr{color:var(--rose);font-size:.82rem;padding:.75rem 1rem;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);border-radius:var(--r8);margin-bottom:1rem;display:none;}
-.sbox{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);border-radius:var(--r20);padding:2.5rem;text-align:center;}
+.ferr{color:var(--rose);font-size:.82rem;padding:.75rem 1rem;background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.3);border-radius:var(--r8);margin-bottom:1rem;display:none;}
+.sbox{background:rgba(0,255,178,.08);border:1px solid rgba(0,201,167,.3);border-radius:var(--r20);padding:2.5rem;text-align:center;}
 .sbox .ico{font-size:3.5rem;margin-bottom:1rem;}
 
-/* ====== PREMIUM SCROLL TOP BUTTON ====== */
+/* ====== SPINNING CONIC SCROLL-TOP BUTTON ====== */
 #stb{
-  position:fixed;bottom:2rem;right:2rem;z-index:8000;
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  width:56px;height:56px;
-  border-radius:var(--r12);
-  background:linear-gradient(135deg,var(--violet),var(--pink));
-  color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.5px;
+  position:fixed;bottom:2.5rem;right:2.5rem;z-index:8000;
+  display:none;align-items:center;justify-content:center;
+  width:62px;height:62px;
+  border-radius:50%;
+  background:conic-gradient(from 180deg,#00C9A7 0deg,#F0C040 120deg,#FF6B9D 240deg,#00E5FF 360deg);
   cursor:pointer;
-  box-shadow:0 8px 32px rgba(124,58,237,.6),0 2px 8px rgba(0,0,0,.4);
-  border:1px solid rgba(255,255,255,.15);
-  transition:all .3s cubic-bezier(.34,1.56,.64,1);
-  text-transform:uppercase;
+  border:none;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;
+  animation:stbSpin 5s linear infinite,stbPulse 2.5s ease infinite;
+  overflow:visible;
+}
+#stb::before{
+  content:'';position:absolute;inset:4px;border-radius:50%;
+  background:#030D1A;z-index:0;
+}
+#stb i{position:relative;z-index:1;color:#00C9A7;font-size:1.15rem;}
+#stb span{display:none;}
+@keyframes stbSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes stbPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(0,201,167,.4),0 8px 32px rgba(0,201,167,.4);}
+  50%{box-shadow:0 0 0 14px rgba(0,201,167,0),0 8px 40px rgba(0,201,167,.6),0 0 80px rgba(240,192,64,.25);}
 }
 #stb:hover{
-  transform:translateY(-5px) scale(1.08);
-  box-shadow:0 16px 40px rgba(124,58,237,.8),0 4px 12px rgba(0,0,0,.4);
+  transform:translateY(-8px) scale(1.12)!important;
+  animation-play-state:paused;
+  box-shadow:0 0 0 8px rgba(0,201,167,.15),0 16px 50px rgba(0,201,167,.7),0 0 80px rgba(240,192,64,.4)!important;
 }
-#stb i{font-size:1rem;}
-#stb span{font-size:.58rem;line-height:1;}
 #stb.show{display:flex;}
 
 /* ====== LIGHTBOX ====== */
 #lb{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;cursor:pointer;}
 #lb.open{display:flex;}
-#lb img{max-width:90vw;max-height:90vh;border-radius:var(--r16);box-shadow:0 0 80px rgba(255,209,92,.2);cursor:default;}
+#lb img{max-width:90vw;max-height:90vh;border-radius:var(--r16);box-shadow:0 0 80px rgba(0,201,167,.2);cursor:default;}
 #lb-x{position:absolute;top:1.5rem;right:2rem;color:#fff;font-size:2.5rem;cursor:pointer;width:44px;height:44px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s;}
 #lb-x:hover{background:var(--rose);transform:scale(1.1);}
 
-/* ====== HERO — CLEAN DARK GRADIENT (no busy photo) ====== */
+/* ====== HERO — REAL BACKGROUND IMAGE ====== */
 .hero{
   position:relative;
   min-height:calc(100vh - 70px);
@@ -215,45 +225,40 @@ input,select,textarea{font-family:inherit;outline:none;}
   overflow:hidden;
   padding:3rem 1.5rem 5rem;
 }
-/* Clean dark gradient hero — text always readable */
 .hero-bg-img{
   position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(124,58,237,.28) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 70%, rgba(236,72,153,.18) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 60% 10%, rgba(255,209,92,.12) 0%, transparent 50%),
-    linear-gradient(160deg, #0a0818 0%, #0e0c22 35%, #130d28 65%, #0c0c1a 100%);
+  /* Background image injected via JS */
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+  background-color:#030D1A;
 }
-/* Geometric grid overlay */
+/* Dark overlay for text readability */
 .hero-bg-img::before{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(124,58,237,.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124,58,237,.06) 1px, transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(160deg,rgba(3,13,26,.88) 0%,rgba(3,13,26,.42) 45%,rgba(3,13,26,.72) 100%);
 }
-/* Floating orbs */
+/* Subtle grid overlay */
 .hero-bg-img::after{
-  content:'';position:absolute;inset:0;
-  background:
-    radial-gradient(circle 200px at 15% 20%, rgba(255,209,92,.07) 0%, transparent 70%),
-    radial-gradient(circle 300px at 85% 80%, rgba(124,58,237,.08) 0%, transparent 70%),
-    radial-gradient(circle 150px at 70% 15%, rgba(236,72,153,.07) 0%, transparent 70%);
+  content:'';position:absolute;inset:0;z-index:2;
+  background-image:
+    linear-gradient(rgba(0,201,167,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,201,167,.04) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
 }
 .hov{
-  position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(6,6,15,.2) 0%,transparent 30%,rgba(6,6,15,.3) 85%,rgba(6,6,15,.7) 100%);
+  position:absolute;inset:0;z-index:3;
+  background:linear-gradient(180deg,rgba(3,13,26,.4) 0%,transparent 25%,rgba(3,13,26,.15) 70%,rgba(3,13,26,.9) 100%);
 }
-/* Particles */
-.hpts{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none;}
+.hpts{position:absolute;inset:0;z-index:4;overflow:hidden;pointer-events:none;}
 .pt{position:absolute;border-radius:50%;animation:ptup linear infinite;opacity:.5;}
 @keyframes ptup{0%{transform:translateY(110%) scale(0);opacity:0;}15%{opacity:.8;}85%{opacity:.3;}100%{transform:translateY(-110vh) scale(2);opacity:0;}}
 
 /* HERO CONTENT */
 .hcnt{position:relative;z-index:10;text-align:center;width:100%;max-width:820px;display:flex;flex-direction:column;align-items:center;}
-.hfc{position:absolute;z-index:8;background:rgba(19,19,42,.92);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r16);padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;animation:hfloat 4s ease-in-out infinite;cursor:pointer;transition:all .2s;max-width:260px;}
-.hfc:hover{transform:translateY(-5px)!important;border-color:rgba(255,209,92,.4);}
+.hfc{position:absolute;z-index:8;background:rgba(4,17,31,.93);backdrop-filter:blur(16px);border:1px solid rgba(0,201,167,.25);border-radius:var(--r16);padding:.85rem 1.1rem;display:flex;align-items:center;gap:.75rem;animation:hfloat 4s ease-in-out infinite;cursor:pointer;transition:all .2s;max-width:260px;}
+.hfc:hover{transform:translateY(-5px)!important;border-color:rgba(0,201,167,.5);box-shadow:0 8px 30px rgba(0,201,167,.2);}
 @keyframes hfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 .hfc1{bottom:20%;left:2%;animation-delay:0s;}
 .hfc2{bottom:20%;right:2%;animation-delay:2s;}
@@ -261,32 +266,32 @@ input,select,textarea{font-family:inherit;outline:none;}
 .hfimg{width:46px;height:46px;border-radius:var(--r8);object-fit:cover;flex-shrink:0;}
 .hftitle{font-size:.78rem;font-weight:700;margin-bottom:.1rem;}
 .hfsub{font-size:.68rem;color:var(--text3);}
-.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:livepulse 1.5s ease infinite;flex-shrink:0;}
-@keyframes livepulse{0%,100%{box-shadow:0 0 10px var(--green);}50%{box-shadow:0 0 20px var(--green),0 0 30px var(--green);}}
-.hpill{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1.3rem;border-radius:50px;background:rgba(255,209,92,.12);border:1px solid rgba(255,209,92,.35);font-size:.72rem;font-weight:800;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
-.hpill .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pdot 1.5s ease infinite;}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:livepulse 1.5s ease infinite;flex-shrink:0;}
+@keyframes livepulse{0%,100%{box-shadow:0 0 10px var(--teal);}50%{box-shadow:0 0 20px var(--teal),0 0 30px var(--teal);}}
+.hpill{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1.3rem;border-radius:50px;background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.4);font-size:.72rem;font-weight:800;color:var(--teal3);letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;}
+.hpill .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pdot 1.5s ease infinite;}
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.5);}}
-.hh1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1.25rem;color:#fff;}
-.hh1 em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hh1 strong{display:block;background:linear-gradient(135deg,var(--v3),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hsub{color:rgba(245,243,255,.88);font-size:1rem;line-height:1.85;margin-bottom:2rem;max-width:580px;}
+.hh1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,7vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1.25rem;color:#fff;text-shadow:0 2px 40px rgba(0,0,0,.6);}
+.hh1 em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hh1 strong{display:block;background:linear-gradient(135deg,var(--teal3),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hsub{color:rgba(240,248,255,.92);font-size:1rem;line-height:1.85;margin-bottom:2rem;max-width:580px;text-shadow:0 1px 20px rgba(0,0,0,.7);}
 .hbtns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.75rem;width:100%;}
 .hsrch{display:flex;flex-direction:row;width:100%;max-width:580px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--r16);overflow:hidden;backdrop-filter:blur(12px);align-items:stretch;}
 .hsrch input{flex:1;min-width:0;padding:.9rem 1.25rem;background:transparent;border:none;color:var(--text);font-size:.9rem;}
 .hsrch input::placeholder{color:rgba(255,255,255,.4);}
-.hsrch button{padding:.9rem 1.6rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-weight:800;font-size:.85rem;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .2s;display:flex;align-items:center;gap:.4rem;}
-.hsrch button:hover{background:linear-gradient(135deg,var(--pink),var(--violet));color:#fff;}
+.hsrch button{padding:.9rem 1.6rem;background:linear-gradient(135deg,var(--teal),var(--gold));color:var(--bg);font-weight:800;font-size:.85rem;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .2s;display:flex;align-items:center;gap:.4rem;}
+.hsrch button:hover{background:linear-gradient(135deg,var(--gold),var(--pink));color:#030D1A;}
 
 /* STATS */
 .srow{display:flex;justify-content:center;flex-wrap:wrap;background:var(--surface);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);}
 .si{text-align:center;padding:2rem 3rem;border-right:1px solid var(--border2);position:relative;overflow:hidden;}
 .si:last-child{border-right:none;}
 .si::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .3s;}
-.si:nth-child(1)::after{background:linear-gradient(90deg,var(--gold),var(--orange));}
-.si:nth-child(2)::after{background:linear-gradient(90deg,var(--violet),var(--sky));}
+.si:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green));}
+.si:nth-child(2)::after{background:linear-gradient(90deg,var(--sky),var(--teal3));}
 .si:nth-child(3)::after{background:linear-gradient(90deg,var(--pink),var(--rose));}
-.si:nth-child(4)::after{background:linear-gradient(90deg,var(--teal),var(--green));}
-.si:nth-child(5)::after{background:linear-gradient(90deg,var(--gold),var(--pink));}
+.si:nth-child(4)::after{background:linear-gradient(90deg,var(--gold),var(--orange));}
+.si:nth-child(5)::after{background:linear-gradient(90deg,var(--teal),var(--pink));}
 .si:hover::after{transform:scaleX(1);}
 .sn{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;display:block;margin-bottom:.25rem;}
 .sl{font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;}
@@ -295,7 +300,7 @@ input,select,textarea{font-family:inherit;outline:none;}
 .svc{border-radius:var(--r20);overflow:hidden;position:relative;cursor:pointer;height:320px;transition:all .35s;}
 .svc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;}
 .svc:hover img{transform:scale(1.1);}
-.svc:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.6);}
+.svc:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 40px rgba(0,201,167,.15);}
 .svov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;}
 .svico{width:48px;height:48px;border-radius:var(--r12);display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1rem;backdrop-filter:blur(12px);}
 .svname{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:.3rem;}
@@ -310,21 +315,21 @@ input,select,textarea{font-family:inherit;outline:none;}
 
 /* TESTIMONIALS */
 .tc{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:2rem;transition:all .3s;position:relative;overflow:hidden;}
-.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--violet),var(--pink),var(--gold));transform:scaleX(0);transition:transform .4s;}
+.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold),var(--pink));transform:scaleX(0);transition:transform .4s;}
 .tc:hover::before{transform:scaleX(1);}
-.tc:hover{transform:translateY(-5px);border-color:rgba(124,58,237,.4);}
-.qm{font-family:'Playfair Display',serif;font-size:5rem;line-height:.8;color:rgba(124,58,237,.2);margin-bottom:.5rem;}
+.tc:hover{transform:translateY(-5px);border-color:rgba(0,201,167,.4);}
+.qm{font-family:'Playfair Display',serif;font-size:5rem;line-height:.8;color:rgba(0,201,167,.2);margin-bottom:.5rem;}
 .sts{color:var(--gold);font-size:.9rem;letter-spacing:2px;margin-bottom:.85rem;}
 .ttxt{font-size:.88rem;color:var(--text2);line-height:1.8;font-style:italic;margin-bottom:1.5rem;}
 .tau{display:flex;align-items:center;gap:.75rem;}
-.tav{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,209,92,.4);}
+.tav{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,201,167,.4);}
 .tnm{font-weight:700;font-size:.9rem;}
 .trl{font-size:.75rem;color:var(--text3);}
 
 /* PROCESS */
 .pcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:3rem;}
 .pcc{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:2rem;text-align:center;transition:all .3s;position:relative;}
-.pcc:hover{transform:translateY(-5px);border-color:var(--border);}
+.pcc:hover{transform:translateY(-5px);border-color:rgba(0,201,167,.3);}
 .pcn{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;line-height:1;margin-bottom:.75rem;-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .pci{width:64px;height:64px;border-radius:var(--r16);margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:1.75rem;}
 .pct{font-weight:800;font-size:.95rem;margin-bottom:.5rem;}
@@ -333,11 +338,11 @@ input,select,textarea{font-family:inherit;outline:none;}
 /* PRICING */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;}
 .pc{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--r28);padding:2.5rem;text-align:center;transition:all .35s;position:relative;}
-.pc.hot{border-color:var(--gold);background:linear-gradient(135deg,rgba(255,209,92,.06),rgba(124,58,237,.06));}
+.pc.hot{border-color:var(--teal);background:linear-gradient(135deg,rgba(0,201,167,.06),rgba(240,192,64,.06));}
 .pc:hover{transform:translateY(-6px);}
-.pbdg{position:absolute;top:-14px;left:50%;transform:translateX(-50%);padding:.3rem 1.5rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-size:.7rem;font-weight:900;border-radius:50px;white-space:nowrap;}
+.pbdg{position:absolute;top:-14px;left:50%;transform:translateX(-50%);padding:.3rem 1.5rem;background:linear-gradient(135deg,var(--teal),var(--gold));color:var(--bg);font-size:.7rem;font-weight:900;border-radius:50px;white-space:nowrap;}
 .ptier{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:1rem;}
-.pamt{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--gold);}
+.pamt{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--teal);}
 .pper{font-size:.8rem;color:var(--text3);margin-bottom:1.5rem;}
 .pfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:2rem;}
 .pfeats li{font-size:.85rem;color:var(--text2);display:flex;align-items:center;gap:.5rem;justify-content:center;}
@@ -348,36 +353,36 @@ input,select,textarea{font-family:inherit;outline:none;}
 .fqi:hover{border-color:var(--border);}
 .fqq{padding:1.25rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:.95rem;transition:background .2s;}
 .fqq:hover{background:var(--surface2);}
-.fqq .ar{color:var(--gold);transition:transform .3s;}
+.fqq .ar{color:var(--teal);transition:transform .3s;}
 .fqq.op .ar{transform:rotate(180deg);}
 .fqa{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;}
 .fqa.op{max-height:300px;padding:0 1.5rem 1.25rem;}
 .fqa p{font-size:.875rem;color:var(--text2);line-height:1.8;}
 
 /* NEWSLETTER */
-.nlbox{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.1),rgba(255,209,92,.08));border:1px solid rgba(124,58,237,.25);border-radius:var(--r40);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
-.nlbox::before{content:'✦';position:absolute;font-size:12rem;color:rgba(124,58,237,.04);top:-2rem;right:-2rem;font-family:'Playfair Display',serif;}
-.nlbox::after{content:'✦';position:absolute;font-size:8rem;color:rgba(255,209,92,.04);bottom:-1rem;left:-1rem;font-family:'Playfair Display',serif;}
+.nlbox{background:linear-gradient(135deg,rgba(0,201,167,.1),rgba(240,192,64,.08),rgba(255,107,157,.07));border:1px solid rgba(0,201,167,.2);border-radius:var(--r40);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.nlbox::before{content:'✦';position:absolute;font-size:12rem;color:rgba(0,201,167,.04);top:-2rem;right:-2rem;font-family:'Playfair Display',serif;}
+.nlbox::after{content:'✦';position:absolute;font-size:8rem;color:rgba(240,192,64,.04);bottom:-1rem;left:-1rem;font-family:'Playfair Display',serif;}
 .nlbox h3{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;margin-bottom:.75rem;}
 .nlbox p{color:var(--text2);margin-bottom:2rem;}
 .nlf{display:flex;gap:.75rem;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
 .nlf input{flex:1;min-width:200px;padding:.9rem 1.3rem;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:var(--r12);color:var(--text);}
-.nlf input:focus{border-color:var(--violet);}
+.nlf input:focus{border-color:var(--teal);}
 #nls{display:none;color:var(--green);font-weight:700;margin-top:1rem;}
 
 /* TEAM */
 .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;}
 .tmc{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:2rem;text-align:center;transition:all .3s;overflow:hidden;position:relative;}
-.tmc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(236,72,153,.06));opacity:0;transition:opacity .3s;}
+.tmc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.06),rgba(240,192,64,.06));opacity:0;transition:opacity .3s;}
 .tmc:hover::before{opacity:1;}
-.tmc:hover{transform:translateY(-6px);border-color:rgba(255,209,92,.4);}
-.tmimg{width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;border:3px solid rgba(124,58,237,.5);}
+.tmc:hover{transform:translateY(-6px);border-color:rgba(240,192,64,.4);}
+.tmimg{width:90px;height:90px;border-radius:50%;object-fit:cover;margin:0 auto 1rem;border:3px solid rgba(0,201,167,.5);}
 .tmnm{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.25rem;}
-.tmrl{font-size:.78rem;color:var(--gold);margin-bottom:.75rem;font-weight:700;}
+.tmrl{font-size:.78rem;color:var(--teal);margin-bottom:.75rem;font-weight:700;}
 .tmbi{font-size:.8rem;color:var(--text3);line-height:1.6;margin-bottom:1rem;}
 .tmsoc{display:flex;justify-content:center;gap:.5rem;}
 .tms{width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.7rem;cursor:pointer;transition:all .2s;color:var(--text3);}
-.tms:hover{background:var(--violet);color:#fff;border-color:var(--violet);transform:scale(1.1);}
+.tms:hover{background:var(--teal);color:#030D1A;border-color:var(--teal);transform:scale(1.1);}
 
 /* SERVICES DETAIL */
 .sd{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:4.5rem 0;border-bottom:1px solid var(--border2);}
@@ -386,7 +391,7 @@ input,select,textarea{font-family:inherit;outline:none;}
 .sd.rev>*{direction:ltr;}
 .sdimg{width:100%;height:340px;object-fit:cover;border-radius:var(--r28);display:block;transition:all .4s;}
 .sdimg:hover{transform:scale(1.02);}
-.sdpp{display:inline-block;padding:.4rem 1.1rem;background:linear-gradient(135deg,rgba(255,209,92,.15),rgba(245,158,11,.1));border:1px solid rgba(255,209,92,.3);color:var(--gold);border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:1.5rem;}
+.sdpp{display:inline-block;padding:.4rem 1.1rem;background:linear-gradient(135deg,rgba(0,201,167,.15),rgba(240,192,64,.1));border:1px solid rgba(0,201,167,.3);color:var(--teal3);border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:1.5rem;}
 .sdtit{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;margin-bottom:.9rem;line-height:1.2;}
 .sddesc{color:var(--text2);font-size:.9rem;line-height:1.85;margin-bottom:1.5rem;}
 .sdfeat{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem;}
@@ -403,12 +408,12 @@ input,select,textarea{font-family:inherit;outline:none;}
 .eside img:hover{transform:scale(1.04);}
 .eigrid{display:grid;grid-template-columns:2fr 1fr;gap:2.5rem;align-items:start;}
 .esb{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r28);padding:2rem;position:sticky;top:88px;}
-.esbp{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--gold);margin-bottom:1.5rem;}
+.esbp{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--teal);margin-bottom:1.5rem;}
 
 /* FILTER BAR */
 .fbar{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;padding:1.25rem 2rem;background:var(--surface2);border-bottom:1px solid var(--border2);position:sticky;top:70px;z-index:100;}
 .fbar select,.fbar input{padding:.6rem 1rem;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r8);color:var(--text);font-size:.85rem;cursor:pointer;}
-.fbar select:focus,.fbar input:focus{border-color:var(--violet);}
+.fbar select:focus,.fbar input:focus{border-color:var(--teal);}
 .fclr{padding:.6rem 1rem;background:transparent;border:1px solid var(--border2);border-radius:var(--r8);color:var(--text2);font-size:.82rem;cursor:pointer;transition:all .2s;}
 .fclr:hover{border-color:var(--rose);color:var(--rose);}
 #nores{display:none;text-align:center;padding:4rem;color:var(--text3);}
@@ -424,7 +429,7 @@ input,select,textarea{font-family:inherit;outline:none;}
 .cilbl{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-bottom:.2rem;}
 .cival{font-size:.9rem;color:var(--text2);}
 .mpbx{width:100%;height:260px;border-radius:var(--r20);background:var(--surface2);border:1px solid var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:2rem;color:var(--text3);}
-.mpbx i{font-size:2.5rem;margin-bottom:.75rem;color:var(--v3);}
+.mpbx i{font-size:2.5rem;margin-bottom:.75rem;color:var(--teal3);}
 
 /* DASHBOARD */
 .dbw{max-width:1260px;margin:0 auto;padding:2.5rem 2rem;}
@@ -432,11 +437,11 @@ input,select,textarea{font-family:inherit;outline:none;}
 .dsc{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r16);padding:1.5rem;transition:all .3s;}
 .dsc:hover{border-color:var(--border);}
 .dsci{width:46px;height:46px;border-radius:var(--r12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
-.di1{background:rgba(255,209,92,.12);color:var(--gold);}
-.di2{background:rgba(124,58,237,.12);color:var(--v3);}
-.di3{background:rgba(13,148,136,.12);color:var(--teal3);}
-.di4{background:rgba(236,72,153,.12);color:var(--pink);}
-.di5{background:rgba(16,185,129,.12);color:var(--green);}
+.di1{background:rgba(240,192,64,.12);color:var(--gold);}
+.di2{background:rgba(0,229,255,.1);color:var(--sky);}
+.di3{background:rgba(0,201,167,.12);color:var(--teal3);}
+.di4{background:rgba(255,107,157,.12);color:var(--pink);}
+.di5{background:rgba(0,255,178,.1);color:var(--green);}
 .dscn{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin-bottom:.2rem;}
 .dscl{font-size:.75rem;color:var(--text3);}
 .tbl{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r16);overflow:hidden;margin-bottom:2rem;}
@@ -446,12 +451,12 @@ table{width:100%;border-collapse:collapse;}
 th{padding:.75rem 1.25rem;font-size:.72rem;font-weight:800;color:var(--text3);text-align:left;text-transform:uppercase;letter-spacing:1px;background:var(--surface2);}
 td{padding:.95rem 1.25rem;border-bottom:1px solid var(--border2);font-size:.85rem;color:var(--text2);}
 tr:last-child td{border-bottom:none;}
-tr:hover td{background:rgba(124,58,237,.04);}
+tr:hover td{background:rgba(0,201,167,.04);}
 
 /* PAGE HERO */
-.ph{padding:5.5rem 2rem 4rem;background:linear-gradient(135deg,var(--bg2),rgba(124,58,237,.08));text-align:center;position:relative;overflow:hidden;}
-.ph::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.12),transparent 70%);top:-150px;right:-100px;pointer-events:none;}
-.ph::after{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(236,72,153,.08),transparent 70%);bottom:-100px;left:-80px;pointer-events:none;}
+.ph{padding:5.5rem 2rem 4rem;background:linear-gradient(135deg,var(--bg2),rgba(0,201,167,.06));text-align:center;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,201,167,.1),transparent 70%);top:-150px;right:-100px;pointer-events:none;}
+.ph::after{content:'';position:absolute;width:350px;height:350px;background:radial-gradient(circle,rgba(240,192,64,.07),transparent 70%);bottom:-100px;left:-80px;pointer-events:none;}
 .phi{position:relative;max-width:720px;margin:0 auto;}
 .pht{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;margin:1rem 0 1.25rem;}
 
@@ -463,88 +468,67 @@ footer{background:var(--bg2);border-top:1px solid var(--border2);padding:4rem 2r
 .fdesc{font-size:.875rem;color:var(--text2);line-height:1.8;margin-bottom:1.5rem;}
 .socr{display:flex;gap:.6rem;flex-wrap:wrap;}
 .sob{width:38px;height:38px;border-radius:var(--r8);background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:.9rem;cursor:pointer;transition:all .2s;}
-.sob:hover{border-color:var(--gold);color:var(--gold);background:rgba(255,209,92,.08);transform:translateY(-2px);}
+.sob:hover{border-color:var(--teal);color:var(--teal);background:rgba(0,201,167,.08);transform:translateY(-2px);}
 .fct{font-weight:800;font-size:.875rem;margin-bottom:1.25rem;}
 .fls{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
 .fls li{font-size:.85rem;color:var(--text3);cursor:pointer;transition:all .2s;}
-.fls li:hover{color:var(--gold);padding-left:4px;}
+.fls li:hover{color:var(--teal);padding-left:4px;}
 .ftb{padding-top:1.5rem;border-top:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
 .fcp{font-size:.78rem;color:var(--text3);}
 
 /* LIGHT MODE */
-body.lm{--bg:#F5F3FF;--bg2:#EDE9FE;--surface:#fff;--surface2:#F0EEF9;--surface3:#E8E4F8;--border:rgba(124,58,237,.15);--border2:rgba(0,0,0,.06);--text:#1E1B4B;--text2:#4C4580;--text3:#8B87A8;}
-body.lm .hh1{color:#1E1B4B;}
-body.lm .hsub{color:#4C4580;}
-body.lm #nav{background:rgba(245,243,255,.92);}
+body.lm{--bg:#F0FDF9;--bg2:#E6FBF5;--surface:#fff;--surface2:#ECFDF5;--surface3:#D1FAE5;--border:rgba(0,201,167,.15);--border2:rgba(0,0,0,.06);--text:#0A2540;--text2:#2D6A55;--text3:#6B9E8A;}
+body.lm .hh1{color:#0A2540;}
+body.lm .hsub{color:#2D6A55;}
+body.lm #nav{background:rgba(240,253,249,.92);}
 body.lm .srow{background:#fff;}
-body.lm table th{background:#EDE9FE;color:#8B87A8;}
-body.lm .fbar{background:#EDE9FE;}
+body.lm table th{background:#E6FBF5;color:#6B9E8A;}
+body.lm .fbar{background:#E6FBF5;}
 
 /* CAT CHIPS */
 .catrow{display:flex;gap:.85rem;overflow-x:auto;padding:.25rem .5rem;margin-top:2.5rem;scrollbar-width:none;}
 .catrow::-webkit-scrollbar{display:none;}
 .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.25rem;border-radius:50px;font-size:.82rem;font-weight:700;white-space:nowrap;cursor:pointer;border:1.5px solid;transition:all .25s;flex-shrink:0;}
-.cc1{border-color:rgba(255,209,92,.3);color:var(--gold);background:rgba(255,209,92,.07);}
+.cc1{border-color:rgba(240,192,64,.3);color:var(--gold);background:rgba(240,192,64,.07);}
 .cc1:hover,.cc1.on{background:var(--gold);color:var(--bg);}
-.cc2{border-color:rgba(124,58,237,.3);color:var(--v3);background:rgba(124,58,237,.07);}
-.cc2:hover,.cc2.on{background:var(--violet);color:#fff;}
-.cc3{border-color:rgba(236,72,153,.3);color:var(--pink);background:rgba(236,72,153,.07);}
+.cc2{border-color:rgba(0,229,255,.3);color:var(--sky);background:rgba(0,229,255,.07);}
+.cc2:hover,.cc2.on{background:var(--sky);color:var(--bg);}
+.cc3{border-color:rgba(255,107,157,.3);color:var(--pink);background:rgba(255,107,157,.07);}
 .cc3:hover,.cc3.on{background:var(--pink);color:#fff;}
-.cc4{border-color:rgba(13,148,136,.3);color:var(--teal3);background:rgba(13,148,136,.07);}
-.cc4:hover,.cc4.on{background:var(--teal);color:#fff;}
-.cc5{border-color:rgba(14,165,233,.3);color:var(--sky);background:rgba(14,165,233,.07);}
-.cc5:hover,.cc5.on{background:var(--sky);color:#fff;}
-.cc6{border-color:rgba(245,158,11,.3);color:var(--orange);background:rgba(245,158,11,.07);}
+.cc4{border-color:rgba(0,201,167,.3);color:var(--teal3);background:rgba(0,201,167,.07);}
+.cc4:hover,.cc4.on{background:var(--teal);color:#030D1A;}
+.cc5{border-color:rgba(0,229,255,.3);color:var(--sky);background:rgba(0,229,255,.07);}
+.cc5:hover,.cc5.on{background:var(--sky);color:#030D1A;}
+.cc6{border-color:rgba(255,179,71,.3);color:var(--orange);background:rgba(255,179,71,.07);}
 .cc6:hover,.cc6.on{background:var(--orange);color:var(--bg);}
 
 /* AWARD STRIP */
 .arow{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:3rem;}
 .ac{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.25rem;transition:all .3s;min-width:240px;}
-.ac:hover{transform:translateY(-4px);border-color:rgba(255,209,92,.35);}
+.ac:hover{transform:translateY(-4px);border-color:rgba(0,201,167,.35);}
 .aci{font-size:2.2rem;}
-.acn{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--gold);}
+.acn{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--teal);}
 .acl{font-size:.78rem;color:var(--text3);}
 
-/* ====== PORTFOLIO PAGE ====== */
-.port-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:1.5rem;
-  margin-top:2rem;
-}
-.port-item{
-  border-radius:var(--r20);overflow:hidden;position:relative;cursor:pointer;
-  aspect-ratio:4/3;
-  background:var(--surface);
-  transition:all .35s;
-}
+/* PORTFOLIO PAGE */
+.port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:2rem;}
+.port-item{border-radius:var(--r20);overflow:hidden;position:relative;cursor:pointer;aspect-ratio:4/3;background:var(--surface);transition:all .35s;}
 .port-item:nth-child(3n+1):first-child{grid-column:span 2;}
 .port-item:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.6);}
 .port-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s;}
 .port-item:hover img{transform:scale(1.08);}
-.port-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(0deg,rgba(6,6,15,.9) 0%,rgba(6,6,15,.3) 50%,transparent 100%);
-  display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;
-  opacity:0;transition:opacity .3s;
-}
+.port-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,13,26,.9) 0%,rgba(3,13,26,.3) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;opacity:0;transition:opacity .3s;}
 .port-item:hover .port-overlay{opacity:1;}
 .port-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;}
 .port-meta{font-size:.8rem;color:var(--text2);}
 .port-badge{position:absolute;top:12px;left:12px;padding:.3rem .85rem;border-radius:50px;font-size:.7rem;font-weight:800;backdrop-filter:blur(12px);}
-.port-client-quote{
-  background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);
-  padding:1.75rem;margin-top:3rem;position:relative;
-}
-.port-client-quote::before{
-  content:'"';font-family:'Playfair Display',serif;font-size:6rem;line-height:.7;
-  color:rgba(124,58,237,.15);position:absolute;top:1rem;left:1.25rem;
-}
+.port-client-quote{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:1.75rem;margin-top:3rem;position:relative;}
+.port-client-quote::before{content:'"';font-family:'Playfair Display',serif;font-size:6rem;line-height:.7;color:rgba(0,201,167,.15);position:absolute;top:1rem;left:1.25rem;}
 .port-quote-text{font-size:.9rem;color:var(--text2);line-height:1.8;font-style:italic;padding-left:3rem;margin-bottom:1rem;}
 .port-quote-author{display:flex;align-items:center;gap:.75rem;padding-left:3rem;}
-.port-quote-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,209,92,.4);}
+.port-quote-img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,201,167,.4);}
 
-/* ====== RESPONSIVE ====== */
+/* RESPONSIVE */
 @media(max-width:960px){
   .nls{display:none;}
   .hmbg{display:flex;}
@@ -598,13 +582,12 @@ body.lm .fbar{background:#EDE9FE;}
   <img id="lb-img" src="" alt=""/>
 </div>
 
-<!-- PREMIUM SCROLL TOP BUTTON -->
+<!-- SPINNING SCROLL TOP BUTTON -->
 <button id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <i class="fa fa-arrow-up"></i>
-  <span>TOP</span>
 </button>
 
-<!-- ===== NAV ===== -->
+<!-- NAV -->
 <nav id="nav">
   <div class="nb" onclick="go('home')"><span class="ef">Event</span><span class="fw">Flow</span></div>
   <div class="nls">
@@ -633,17 +616,12 @@ body.lm .fbar{background:#EDE9FE;}
   <button class="glow-btn" style="margin-top:.75rem;width:100%;justify-content:center;" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Your Event</button>
 </div>
 
-<!-- ============================================================
-     HOME PAGE
-     ============================================================ -->
+<!-- HOME PAGE -->
 <div id="pg-home" class="pg on">
-
   <section class="hero">
-    <div class="hero-bg-img"></div>
+    <div class="hero-bg-img" id="heroBg"></div>
     <div class="hov"></div>
     <div class="hpts" id="hpts"></div>
-
-    <!-- Floating Preview Cards -->
     <div class="hfc hfc1" onclick="go('events')">
       <img class="hfimg" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=120&q=80" alt=""/>
       <div><div class="hftitle">Royal Wedding Gala</div><div class="hfsub">Dec 28 · Taj Palace, Mumbai</div></div>
@@ -659,7 +637,6 @@ body.lm .fbar{background:#EDE9FE;}
       <div><div class="hftitle">NYE Gala 2026</div><div class="hfsub">Dec 31 · JW Marriott</div></div>
       <div class="live-dot"></div>
     </div>
-
     <div class="hcnt">
       <div class="hpill"><span class="dot"></span> India's #1 Premium Event Management Since 2010</div>
       <h1 class="hh1">Craft Your<br><em>Perfect Event</em><br><strong>Experience</strong></h1>
@@ -678,11 +655,11 @@ body.lm .fbar{background:#EDE9FE;}
 
   <!-- STATS BAR -->
   <div class="srow">
-    <div class="si reveal stagger-1"><span class="sn" style="background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">1,200+</span><span class="sl">Events Executed</span></div>
-    <div class="si reveal stagger-2"><span class="sn" style="background:linear-gradient(135deg,var(--v3),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">98%</span><span class="sl">Client Satisfaction</span></div>
+    <div class="si reveal stagger-1"><span class="sn" style="background:linear-gradient(135deg,var(--teal),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">1,200+</span><span class="sl">Events Executed</span></div>
+    <div class="si reveal stagger-2"><span class="sn" style="background:linear-gradient(135deg,var(--sky),var(--teal3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">98%</span><span class="sl">Client Satisfaction</span></div>
     <div class="si reveal stagger-3"><span class="sn" style="background:linear-gradient(135deg,var(--pink),var(--rose));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">15+</span><span class="sl">Years Experience</span></div>
-    <div class="si reveal stagger-4"><span class="sn" style="background:linear-gradient(135deg,var(--teal3),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">500+</span><span class="sl">Premium Vendors</span></div>
-    <div class="si reveal stagger-5"><span class="sn" style="background:linear-gradient(135deg,var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">30+</span><span class="sl">Cities Served</span></div>
+    <div class="si reveal stagger-4"><span class="sn" style="background:linear-gradient(135deg,var(--gold),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">500+</span><span class="sl">Premium Vendors</span></div>
+    <div class="si reveal stagger-5"><span class="sn" style="background:linear-gradient(135deg,var(--teal),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">30+</span><span class="sl">Cities Served</span></div>
   </div>
 
   <!-- FEATURED EVENTS -->
@@ -733,7 +710,6 @@ body.lm .fbar{background:#EDE9FE;}
       </div>
     </div>
   </div>
-
   <div class="dline"></div>
 
   <!-- SERVICES VISUAL -->
@@ -745,11 +721,11 @@ body.lm .fbar{background:#EDE9FE;}
         <p class="ss reveal" style="margin:0 auto;">Five distinct categories — each managed with obsessive attention to detail and delivered at the highest standard.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;">
-        <div class="svc reveal stagger-1" onclick="go('services')"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80" alt="Wedding" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(6,6,15,.92) 40%,transparent);"><div class="svico" style="background:rgba(255,209,92,.2);color:var(--gold);">💍</div><div class="svname">Wedding Planning</div><div class="svdesc">End-to-end luxury weddings — ceremony to reception.</div><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
-        <div class="svc reveal stagger-2" onclick="go('services')"><img src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=500&q=80" alt="Corporate" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(6,6,15,.92) 40%,transparent);"><div class="svico" style="background:rgba(124,58,237,.25);color:var(--v3);">🏢</div><div class="svname">Corporate Events</div><div class="svdesc">Conferences, launches & summits that drive results.</div><button class="bv bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
-        <div class="svc reveal stagger-3" onclick="go('services')"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&q=80" alt="Birthday" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(6,6,15,.92) 40%,transparent);"><div class="svico" style="background:rgba(236,72,153,.2);color:var(--pink);">🎂</div><div class="svname">Birthday Parties</div><div class="svdesc">Custom themed bashes from intimate to grand scale.</div><button class="bp bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
-        <div class="svc reveal stagger-4" onclick="go('services')"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80" alt="Fest" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(6,6,15,.92) 40%,transparent);"><div class="svico" style="background:rgba(13,148,136,.2);color:var(--teal3);">🎓</div><div class="svname">College Fests</div><div class="svdesc">Full-scale fests with AV, artists & crowd management.</div><button class="bt bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
-        <div class="svc reveal stagger-5" onclick="go('services')"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&q=80" alt="Party" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(6,6,15,.92) 40%,transparent);"><div class="svico" style="background:rgba(14,165,233,.2);color:var(--sky);">🎉</div><div class="svname">Private Parties</div><div class="svdesc">Celebrity DJs, luxury venues & fine dining curation.</div><button class="bo bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
+        <div class="svc reveal stagger-1" onclick="go('services')"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=80" alt="Wedding" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(3,13,26,.92) 40%,transparent);"><div class="svico" style="background:rgba(240,192,64,.2);color:var(--gold);">💍</div><div class="svname">Wedding Planning</div><div class="svdesc">End-to-end luxury weddings — ceremony to reception.</div><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
+        <div class="svc reveal stagger-2" onclick="go('services')"><img src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=500&q=80" alt="Corporate" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(3,13,26,.92) 40%,transparent);"><div class="svico" style="background:rgba(0,229,255,.2);color:var(--sky);">🏢</div><div class="svname">Corporate Events</div><div class="svdesc">Conferences, launches & summits that drive results.</div><button class="bv bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
+        <div class="svc reveal stagger-3" onclick="go('services')"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=500&q=80" alt="Birthday" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(3,13,26,.92) 40%,transparent);"><div class="svico" style="background:rgba(255,107,157,.2);color:var(--pink);">🎂</div><div class="svname">Birthday Parties</div><div class="svdesc">Custom themed bashes from intimate to grand scale.</div><button class="bp bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
+        <div class="svc reveal stagger-4" onclick="go('services')"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80" alt="Fest" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(3,13,26,.92) 40%,transparent);"><div class="svico" style="background:rgba(0,201,167,.2);color:var(--teal3);">🎓</div><div class="svname">College Fests</div><div class="svdesc">Full-scale fests with AV, artists & crowd management.</div><button class="bt bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
+        <div class="svc reveal stagger-5" onclick="go('services')"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=500&q=80" alt="Party" loading="lazy"/><div class="svov" style="background:linear-gradient(0deg,rgba(3,13,26,.92) 40%,transparent);"><div class="svico" style="background:rgba(0,229,255,.2);color:var(--sky);">🎉</div><div class="svname">Private Parties</div><div class="svdesc">Celebrity DJs, luxury venues & fine dining curation.</div><button class="bo bsm" onclick="event.stopPropagation();go('booking')">Book Now</button></div></div>
       </div>
     </div>
   </div>
@@ -763,14 +739,13 @@ body.lm .fbar{background:#EDE9FE;}
         <p class="ss reveal" style="margin:0 auto;">Four seamless steps from your first hello to the final standing ovation.</p>
       </div>
       <div class="pcgrid">
-        <div class="pcc reveal stagger-1"><div class="pcn" style="background:linear-gradient(135deg,var(--gold),var(--orange));">01</div><div class="pci" style="background:rgba(255,209,92,.12);color:var(--gold);"><i class="fa fa-comments"></i></div><div class="pct">Free Consultation</div><div class="pcd">Share your vision with our dedicated specialist in a complimentary 1-hour discovery session.</div></div>
-        <div class="pcc reveal stagger-2"><div class="pcn" style="background:linear-gradient(135deg,var(--v3),var(--sky));">02</div><div class="pci" style="background:rgba(124,58,237,.12);color:var(--v3);"><i class="fa fa-pencil-ruler"></i></div><div class="pct">Bespoke Plan</div><div class="pcd">We craft a completely custom event blueprint tailored to your vision, guests, and budget.</div></div>
-        <div class="pcc reveal stagger-3"><div class="pcn" style="background:linear-gradient(135deg,var(--pink),var(--rose));">03</div><div class="pci" style="background:rgba(236,72,153,.12);color:var(--pink);"><i class="fa fa-cogs"></i></div><div class="pct">Perfect Execution</div><div class="pcd">Our expert team manages every vendor, timeline, and detail so you can enjoy your moment.</div></div>
-        <div class="pcc reveal stagger-4"><div class="pcn" style="background:linear-gradient(135deg,var(--teal3),var(--green));">04</div><div class="pci" style="background:rgba(13,148,136,.12);color:var(--teal3);"><i class="fa fa-star"></i></div><div class="pct">Magic Created</div><div class="pcd">Watch as we orchestrate an event that exceeds every expectation and creates lifelong memories.</div></div>
+        <div class="pcc reveal stagger-1"><div class="pcn" style="background:linear-gradient(135deg,var(--teal),var(--green));">01</div><div class="pci" style="background:rgba(0,201,167,.12);color:var(--teal);"><i class="fa fa-comments"></i></div><div class="pct">Free Consultation</div><div class="pcd">Share your vision with our dedicated specialist in a complimentary 1-hour discovery session.</div></div>
+        <div class="pcc reveal stagger-2"><div class="pcn" style="background:linear-gradient(135deg,var(--sky),var(--teal3));">02</div><div class="pci" style="background:rgba(0,229,255,.1);color:var(--sky);"><i class="fa fa-pencil-ruler"></i></div><div class="pct">Bespoke Plan</div><div class="pcd">We craft a completely custom event blueprint tailored to your vision, guests, and budget.</div></div>
+        <div class="pcc reveal stagger-3"><div class="pcn" style="background:linear-gradient(135deg,var(--pink),var(--rose));">03</div><div class="pci" style="background:rgba(255,107,157,.12);color:var(--pink);"><i class="fa fa-cogs"></i></div><div class="pct">Perfect Execution</div><div class="pcd">Our expert team manages every vendor, timeline, and detail so you can enjoy your moment.</div></div>
+        <div class="pcc reveal stagger-4"><div class="pcn" style="background:linear-gradient(135deg,var(--gold),var(--orange));">04</div><div class="pci" style="background:rgba(240,192,64,.12);color:var(--gold);"><i class="fa fa-star"></i></div><div class="pct">Magic Created</div><div class="pcd">Watch as we orchestrate an event that exceeds every expectation and creates lifelong memories.</div></div>
       </div>
     </div>
   </div>
-
   <div class="dline"></div>
 
   <!-- TESTIMONIALS -->
@@ -878,7 +853,7 @@ body.lm .fbar{background:#EDE9FE;}
     <div class="fti">
       <div class="ftg">
         <div class="reveal">
-          <span class="fbn"><span style="background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Event</span><span style="background:linear-gradient(135deg,var(--v3),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Flow</span></span>
+          <span class="fbn"><span style="background:linear-gradient(135deg,var(--teal),var(--sky));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Event</span><span style="background:linear-gradient(135deg,var(--gold),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Flow</span></span>
           <p class="fdesc">Creating extraordinary moments since 2010. India's most trusted premium event management company — 1,200+ events, 30+ cities, 98% client satisfaction guaranteed.</p>
           <div class="socr">
             <div class="sob"><i class="fab fa-facebook-f"></i></div>
@@ -900,7 +875,7 @@ body.lm .fbar{background:#EDE9FE;}
         <div class="reveal">
           <div class="fct">Contact Us</div>
           <ul class="fls">
-            <li><i class="fa fa-phone" style="margin-right:.4rem;color:var(--v3)"></i>+91 98765 43210</li>
+            <li><i class="fa fa-phone" style="margin-right:.4rem;color:var(--teal3)"></i>+91 98765 43210</li>
             <li><i class="fa fa-envelope" style="margin-right:.4rem;color:var(--pink)"></i>hello@eventflow.in</li>
             <li><i class="fa fa-map-marker-alt" style="margin-right:.4rem;color:var(--gold)"></i>BKC, Mumbai 400051</li>
             <li><i class="fa fa-clock" style="margin-right:.4rem;color:var(--teal3)"></i>Mon–Sat 9am–8pm</li>
@@ -912,349 +887,82 @@ body.lm .fbar{background:#EDE9FE;}
   </footer>
 </div>
 
-<!-- ============================================================
-     ABOUT PAGE
-     ============================================================ -->
+<!-- ABOUT PAGE -->
 <div id="pg-about" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-users"></i> Our Story</div>
-      <h1 class="pht reveal">Creating <span class="gt-gold">Magic</span><br>Since 2010</h1>
-      <p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">EventFlow began as a passionate team with a monumental dream — to transform ordinary moments into extraordinary lifelong memories. Today, we're India's most trusted premium event management company.</p>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="inn">
-      <div class="g2">
-        <div class="reveal-left">
-          <div class="sb"><i class="fa fa-bullseye"></i> Mission & Vision</div>
-          <h2 class="st">We Don't Just Plan Events,<br><span class="gt-pink">We Create Experiences</span></h2>
-          <p style="color:var(--text2);line-height:1.9;margin-bottom:1.25rem;">Our mission is to deliver flawlessly executed events that consistently exceed every expectation. We combine creative vision with meticulous operational planning to ensure each event becomes a timeless masterpiece.</p>
-          <p style="color:var(--text2);line-height:1.9;margin-bottom:2rem;">Our vision is to become the most sought-after event management brand across Asia — known for innovation, authenticity, luxury, and unrivaled client satisfaction at every price point.</p>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-            <button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-plus"></i> Work With Us</button>
-            <button class="bo" onclick="go('contact')"><i class="fa fa-envelope"></i> Get In Touch</button>
-          </div>
-        </div>
-        <div class="reveal-right">
-          <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=85" alt="About" style="width:100%;height:400px;object-fit:cover;border-radius:var(--r28);display:block;"/>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:.85rem;">
-            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80" alt="" style="width:100%;height:140px;object-fit:cover;border-radius:var(--r16);display:block;"/>
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=80" alt="" style="width:100%;height:140px;object-fit:cover;border-radius:var(--r16);display:block;"/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-users"></i> Our Story</div><h1 class="pht reveal">Creating <span class="gt-gold">Magic</span><br>Since 2010</h1><p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">EventFlow began as a passionate team with a monumental dream — to transform ordinary moments into extraordinary lifelong memories.</p></div></div>
+  <div class="sec"><div class="inn"><div class="g2"><div class="reveal-left"><div class="sb"><i class="fa fa-bullseye"></i> Mission & Vision</div><h2 class="st">We Don't Just Plan Events,<br><span class="gt-pink">We Create Experiences</span></h2><p style="color:var(--text2);line-height:1.9;margin-bottom:1.25rem;">Our mission is to deliver flawlessly executed events that consistently exceed every expectation. We combine creative vision with meticulous operational planning to ensure each event becomes a timeless masterpiece.</p><div style="display:flex;gap:1rem;flex-wrap:wrap;"><button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-plus"></i> Work With Us</button><button class="bo" onclick="go('contact')"><i class="fa fa-envelope"></i> Get In Touch</button></div></div><div class="reveal-right"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=700&q=85" alt="About" style="width:100%;height:400px;object-fit:cover;border-radius:var(--r28);display:block;"/><div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:.85rem;"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&q=80" alt="" style="width:100%;height:140px;object-fit:cover;border-radius:var(--r16);display:block;"/><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&q=80" alt="" style="width:100%;height:140px;object-fit:cover;border-radius:var(--r16);display:block;"/></div></div></div></div></div>
   <div class="dline"></div>
-  <div class="sec alt">
-    <div class="inn">
-      <div class="sb reveal"><i class="fa fa-user-friends"></i> Meet the Team</div>
-      <h2 class="st reveal">The People Behind <span class="gt-violet">the Magic</span></h2>
-      <div class="tgrid">
-        <div class="tmc reveal stagger-1"><img class="tmimg" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt=""/><div class="tmnm">Aryan Kapoor</div><div class="tmrl">Founder & CEO</div><p class="tmbi">15+ years in luxury events across India and SE Asia.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div>
-        <div class="tmc reveal stagger-2"><img class="tmimg" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt=""/><div class="tmnm">Nisha Verma</div><div class="tmrl">Creative Director</div><p class="tmbi">Award-winning designer with a genius for spaces.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div>
-        <div class="tmc reveal stagger-3"><img class="tmimg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt=""/><div class="tmnm">Vikram Singh</div><div class="tmrl">Head of Operations</div><p class="tmbi">Logistics mastermind ensuring every event runs perfectly.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-twitter"></i></div></div></div>
-        <div class="tmc reveal stagger-4"><img class="tmimg" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt=""/><div class="tmnm">Meera Iyer</div><div class="tmrl">Client Relations Lead</div><p class="tmbi">Your dedicated advocate for flawless execution.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div>
-      </div>
-    </div>
-  </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+  <div class="sec alt"><div class="inn"><div class="sb reveal"><i class="fa fa-user-friends"></i> Meet the Team</div><h2 class="st reveal">The People Behind <span class="gt-violet">the Magic</span></h2><div class="tgrid"><div class="tmc reveal stagger-1"><img class="tmimg" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt=""/><div class="tmnm">Aryan Kapoor</div><div class="tmrl">Founder & CEO</div><p class="tmbi">15+ years in luxury events across India and SE Asia.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div><div class="tmc reveal stagger-2"><img class="tmimg" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt=""/><div class="tmnm">Nisha Verma</div><div class="tmrl">Creative Director</div><p class="tmbi">Award-winning designer with a genius for spaces.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div><div class="tmc reveal stagger-3"><img class="tmimg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt=""/><div class="tmnm">Vikram Singh</div><div class="tmrl">Head of Operations</div><p class="tmbi">Logistics mastermind ensuring every event runs perfectly.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-twitter"></i></div></div></div><div class="tmc reveal stagger-4"><img class="tmimg" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80" alt=""/><div class="tmnm">Meera Iyer</div><div class="tmrl">Client Relations Lead</div><p class="tmbi">Your dedicated advocate for flawless execution.</p><div class="tmsoc"><div class="tms"><i class="fab fa-linkedin-in"></i></div><div class="tms"><i class="fab fa-instagram"></i></div></div></div></div></div></div>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     SERVICES PAGE
-     ============================================================ -->
+<!-- SERVICES PAGE -->
 <div id="pg-services" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-concierge-bell"></i> What We Offer</div>
-      <h1 class="pht reveal">Our Premium <span class="gt-violet">Services</span></h1>
-      <p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">Five world-class event categories — each managed with obsessive attention to detail and an absolute commitment to perfection.</p>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="inn">
-      <div class="sd reveal">
-        <img class="sdimg" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=85" alt="Wedding" loading="lazy"/>
-        <div>
-          <span class="tag tg" style="margin-bottom:1rem;display:inline-block;">💍 Wedding Planning</span>
-          <div class="sdpp">Starting from ₹85,000</div>
-          <h2 class="sdtit">Your Dream Wedding,<br><span class="gt-gold">Perfectly Realized</span></h2>
-          <p class="sddesc">From the engagement ceremony to the grand reception — we handle every facet with grace, grandeur, and flawless execution.</p>
-          <ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Venue scouting, booking & complete decoration</li><li><i class="fa fa-check-circle"></i> Floral design, lighting architecture & ambiance</li><li><i class="fa fa-check-circle"></i> Multi-cuisine catering for 50–2000 guests</li><li><i class="fa fa-check-circle"></i> Luxury photography, videography & drone coverage</li></ul>
-          <div style="display:flex;gap:1rem;flex-wrap:wrap;"><button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Wedding Package</button><button class="bwa" onclick="window.open('https://wa.me/919876543210','_blank')"><i class="fab fa-whatsapp"></i> WhatsApp Us</button></div>
-        </div>
-      </div>
-      <div class="sd rev reveal">
-        <img class="sdimg" src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=700&q=85" alt="Corporate" loading="lazy"/>
-        <div>
-          <span class="tag tv" style="margin-bottom:1rem;display:inline-block;">🏢 Corporate Events</span>
-          <div class="sdpp">Starting from ₹50,000</div>
-          <h2 class="sdtit">Events That Drive <span class="gt-violet">Real Business Results</span></h2>
-          <p class="sddesc">Conferences, product launches, annual galas, team-building retreats — we deliver impactful corporate events that strengthen brand identity.</p>
-          <ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Premium venue selection & complete branding setup</li><li><i class="fa fa-check-circle"></i> Full professional AV, stage & production crew</li><li><i class="fa fa-check-circle"></i> Speaker management & VIP hospitality</li></ul>
-          <button class="bv" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Corporate Event</button>
-        </div>
-      </div>
-      <div class="sd reveal">
-        <img class="sdimg" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=85" alt="Birthday" loading="lazy"/>
-        <div>
-          <span class="tag tp" style="margin-bottom:1rem;display:inline-block;">🎂 Birthday Parties</span>
-          <div class="sdpp">Starting from ₹25,000</div>
-          <h2 class="sdtit">Celebrate in <span class="gt-pink">Spectacular Style</span></h2>
-          <p class="sddesc">Whether it's a fabulous 18th, a lavish 50th, or a sweet 1st birthday — we create personalized, theme-driven celebrations.</p>
-          <ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Custom theme design & personalized décor</li><li><i class="fa fa-check-circle"></i> Professional DJ, live band & entertainment</li><li><i class="fa fa-check-circle"></i> Custom cake design & dessert bar setup</li></ul>
-          <button class="bp" onclick="go('booking')"><i class="fa fa-birthday-cake"></i> Plan My Birthday</button>
-        </div>
-      </div>
-      <div class="sd rev reveal">
-        <img class="sdimg" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=85" alt="Fest" loading="lazy"/>
-        <div>
-          <span class="tag tt" style="margin-bottom:1rem;display:inline-block;">🎓 College Fests</span>
-          <div class="sdpp">Starting from ₹1,50,000</div>
-          <h2 class="sdtit">Fests That <span class="gt-violet">Become Legends</span></h2>
-          <p class="sddesc">From TechFests to cultural extravaganzas — we handle everything from stage setup and artist management to crowd control and media coverage.</p>
-          <ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Multi-stage setup & professional AV production</li><li><i class="fa fa-check-circle"></i> Artist booking & performance coordination</li><li><i class="fa fa-check-circle"></i> Full security, crowd management & logistics</li></ul>
-          <button class="bt" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Plan My Fest</button>
-        </div>
-      </div>
-      <div class="sd reveal">
-        <img class="sdimg" src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=700&q=85" alt="Concert" loading="lazy"/>
-        <div>
-          <span class="tag ts" style="margin-bottom:1rem;display:inline-block;">🎉 Concerts & Shows</span>
-          <div class="sdpp">Starting from ₹3,00,000</div>
-          <h2 class="sdtit">Spectacular <span class="gt-pink">Live Shows</span></h2>
-          <p class="sddesc">Celebrity concerts, comedy nights, cultural shows — we bring the biggest names to the most stunning venues with flawless production values.</p>
-          <ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Celebrity & artist booking & contract management</li><li><i class="fa fa-check-circle"></i> Professional stage, lighting & sound production</li><li><i class="fa fa-check-circle"></i> Ticketing, marketing & PR coordination</li></ul>
-          <button class="glow-btn" onclick="go('booking')"><i class="fa fa-music"></i> Book a Show</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-concierge-bell"></i> What We Offer</div><h1 class="pht reveal">Our Premium <span class="gt-violet">Services</span></h1><p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">Five world-class event categories — each managed with obsessive attention to detail and an absolute commitment to perfection.</p></div></div>
+  <div class="sec"><div class="inn">
+    <div class="sd reveal"><img class="sdimg" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=700&q=85" alt="Wedding" loading="lazy"/><div><span class="tag tg" style="margin-bottom:1rem;display:inline-block;">💍 Wedding Planning</span><div class="sdpp">Starting from ₹85,000</div><h2 class="sdtit">Your Dream Wedding,<br><span class="gt-gold">Perfectly Realized</span></h2><p class="sddesc">From the engagement ceremony to the grand reception — we handle every facet with grace, grandeur, and flawless execution.</p><ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Venue scouting, booking & complete decoration</li><li><i class="fa fa-check-circle"></i> Floral design, lighting architecture & ambiance</li><li><i class="fa fa-check-circle"></i> Multi-cuisine catering for 50–2000 guests</li><li><i class="fa fa-check-circle"></i> Luxury photography, videography & drone coverage</li></ul><div style="display:flex;gap:1rem;flex-wrap:wrap;"><button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Wedding Package</button><button class="bwa" onclick="window.open('https://wa.me/919876543210','_blank')"><i class="fab fa-whatsapp"></i> WhatsApp Us</button></div></div></div>
+    <div class="sd rev reveal"><img class="sdimg" src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=700&q=85" alt="Corporate" loading="lazy"/><div><span class="tag tv" style="margin-bottom:1rem;display:inline-block;">🏢 Corporate Events</span><div class="sdpp">Starting from ₹50,000</div><h2 class="sdtit">Events That Drive <span class="gt-violet">Real Business Results</span></h2><p class="sddesc">Conferences, product launches, annual galas, team-building retreats — we deliver impactful corporate events that strengthen brand identity.</p><ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Premium venue selection & complete branding setup</li><li><i class="fa fa-check-circle"></i> Full professional AV, stage & production crew</li><li><i class="fa fa-check-circle"></i> Speaker management & VIP hospitality</li></ul><button class="bv" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Corporate Event</button></div></div>
+    <div class="sd reveal"><img class="sdimg" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=85" alt="Birthday" loading="lazy"/><div><span class="tag tp" style="margin-bottom:1rem;display:inline-block;">🎂 Birthday Parties</span><div class="sdpp">Starting from ₹25,000</div><h2 class="sdtit">Celebrate in <span class="gt-pink">Spectacular Style</span></h2><p class="sddesc">Whether it's a fabulous 18th, a lavish 50th, or a sweet 1st birthday — we create personalized, theme-driven celebrations.</p><ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Custom theme design & personalized décor</li><li><i class="fa fa-check-circle"></i> Professional DJ, live band & entertainment</li><li><i class="fa fa-check-circle"></i> Custom cake design & dessert bar setup</li></ul><button class="bp" onclick="go('booking')"><i class="fa fa-birthday-cake"></i> Plan My Birthday</button></div></div>
+    <div class="sd rev reveal"><img class="sdimg" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=85" alt="Fest" loading="lazy"/><div><span class="tag tt" style="margin-bottom:1rem;display:inline-block;">🎓 College Fests</span><div class="sdpp">Starting from ₹1,50,000</div><h2 class="sdtit">Fests That <span class="gt-violet">Become Legends</span></h2><p class="sddesc">From TechFests to cultural extravaganzas — we handle everything from stage setup and artist management to crowd control and media coverage.</p><ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Multi-stage setup & professional AV production</li><li><i class="fa fa-check-circle"></i> Artist booking & performance coordination</li><li><i class="fa fa-check-circle"></i> Full security, crowd management & logistics</li></ul><button class="bt" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Plan My Fest</button></div></div>
+    <div class="sd reveal"><img class="sdimg" src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=700&q=85" alt="Concert" loading="lazy"/><div><span class="tag ts" style="margin-bottom:1rem;display:inline-block;">🎉 Concerts & Shows</span><div class="sdpp">Starting from ₹3,00,000</div><h2 class="sdtit">Spectacular <span class="gt-pink">Live Shows</span></h2><p class="sddesc">Celebrity concerts, comedy nights, cultural shows — we bring the biggest names to the most stunning venues with flawless production values.</p><ul class="sdfeat"><li><i class="fa fa-check-circle"></i> Celebrity & artist booking & contract management</li><li><i class="fa fa-check-circle"></i> Professional stage, lighting & sound production</li><li><i class="fa fa-check-circle"></i> Ticketing, marketing & PR coordination</li></ul><button class="glow-btn" onclick="go('booking')"><i class="fa fa-music"></i> Book a Show</button></div></div>
+  </div></div>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     EVENTS PAGE
-     ============================================================ -->
+<!-- EVENTS PAGE -->
 <div id="pg-events" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-calendar-alt"></i> Upcoming Events</div>
-      <h1 class="pht reveal">Explore All <span class="gt-gold">Events</span></h1>
-      <div class="reveal" style="display:flex;gap:.75rem;max-width:500px;margin:1.5rem auto 0;flex-wrap:wrap;justify-content:center;">
-        <input class="fi" id="evsrch" placeholder="Search events..." oninput="doEvF()" style="flex:1;min-width:200px;"/>
-      </div>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-calendar-alt"></i> Upcoming Events</div><h1 class="pht reveal">Explore All <span class="gt-gold">Events</span></h1><div class="reveal" style="display:flex;gap:.75rem;max-width:500px;margin:1.5rem auto 0;flex-wrap:wrap;justify-content:center;"><input class="fi" id="evsrch" placeholder="Search events..." oninput="doEvF()" style="flex:1;min-width:200px;"/></div></div></div>
+  <div class="fbar"><select id="evcat" onchange="doEvF()"><option value="">All Categories</option><option>Wedding</option><option>Corporate</option><option>Birthday</option><option>College Fest</option><option>Private Party</option><option>Destination</option></select><select id="evprice" onchange="doEvF()"><option value="">All Prices</option><option value="low">Under ₹5,000</option><option value="mid">₹5,000 – ₹50,000</option><option value="high">Above ₹50,000</option></select><button class="fclr" onclick="clrEvF()"><i class="fa fa-times"></i> Clear</button><span id="evcnt" style="font-size:.82rem;color:var(--text3);margin-left:auto;"></span></div>
+  <div class="sec"><div class="inn">
+    <div class="g3" id="evgrid">
+      <div class="card evc reveal stagger-1" data-c="Wedding" data-p="high" onclick="openED('Royal Wedding Gala','Wedding','December 28, 2025','6:00 PM – 11:30 PM','Taj Palace Ballroom, Mumbai','₹45,000','https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="" loading="lazy"/><span class="cib tg">💍 Wedding</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Royal Wedding Gala</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Dec 28, 2025</span><span><i class="fa fa-map-marker-alt"></i>Taj Palace, Mumbai</span></div><div class="cf"><span class="cp">₹45,000</span><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
+      <div class="card evc reveal stagger-2" data-c="College Fest" data-p="low" onclick="openED('TechFest 2025','College Fest','Jan 15–17, 2026','10 AM – 10 PM','IIT Bombay, Mumbai','₹800','https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="" loading="lazy"/><span class="cib tt">🎓 College Fest</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">TechFest 2025</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Jan 15–17, 2026</span><span><i class="fa fa-map-marker-alt"></i>IIT Bombay</span></div><div class="cf"><span class="cp">₹800</span><button class="bt bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
+      <div class="card evc reveal stagger-3" data-c="Corporate" data-p="mid" onclick="openED('Leadership Summit 2025','Corporate','Feb 5–6, 2026','9 AM – 6 PM','The Leela, New Delhi','₹12,000','https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=600&q=80" alt="" loading="lazy"/><span class="cib tv">🏢 Corporate</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Leadership Summit 2025</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Feb 5–6, 2026</span><span><i class="fa fa-map-marker-alt"></i>The Leela, Delhi</span></div><div class="cf"><span class="cp">₹12,000</span><button class="bv bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
+      <div class="card evc reveal stagger-4" data-c="Birthday" data-p="mid" onclick="openED('Grand Birthday Bash','Birthday','March 3, 2026','7 PM – Midnight','Park Hyatt, Bengaluru','₹35,000','https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="" loading="lazy"/><span class="cib tp">🎂 Birthday</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Grand Birthday Bash</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Mar 3, 2026</span><span><i class="fa fa-map-marker-alt"></i>Park Hyatt, Bengaluru</span></div><div class="cf"><span class="cp">₹35,000</span><button class="bp bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
+      <div class="card evc reveal stagger-5" data-c="Private Party" data-p="mid" onclick="openED('New Year Eve Gala','Private Party','December 31, 2025','9 PM – 2 AM','JW Marriott, Pune','₹8,500','https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80" alt="" loading="lazy"/><span class="cib ts">🎉 Private Party</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">New Year Eve Gala 2026</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Dec 31, 2025</span><span><i class="fa fa-map-marker-alt"></i>JW Marriott, Pune</span></div><div class="cf"><span class="cp">₹8,500</span><button class="bo bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
+      <div class="card evc reveal stagger-6" data-c="Destination" data-p="high" onclick="openED('Jaipur Palace Wedding','Destination Wedding','Nov 22, 2025','5 PM – Midnight','Jai Mahal Palace, Jaipur','₹1,20,000','https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="" loading="lazy"/><span class="cib to">✈️ Destination</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Jaipur Palace Wedding</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Nov 22, 2025</span><span><i class="fa fa-map-marker-alt"></i>Jai Mahal, Jaipur</span></div><div class="cf"><span class="cp">₹1,20,000</span><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
     </div>
-  </div>
-  <div class="fbar">
-    <select id="evcat" onchange="doEvF()"><option value="">All Categories</option><option>Wedding</option><option>Corporate</option><option>Birthday</option><option>College Fest</option><option>Private Party</option><option>Destination</option></select>
-    <select id="evprice" onchange="doEvF()"><option value="">All Prices</option><option value="low">Under ₹5,000</option><option value="mid">₹5,000 – ₹50,000</option><option value="high">Above ₹50,000</option></select>
-    <button class="fclr" onclick="clrEvF()"><i class="fa fa-times"></i> Clear</button>
-    <span id="evcnt" style="font-size:.82rem;color:var(--text3);margin-left:auto;"></span>
-  </div>
-  <div class="sec">
-    <div class="inn">
-      <div class="g3" id="evgrid">
-        <div class="card evc reveal stagger-1" data-c="Wedding" data-p="high" onclick="openED('Royal Wedding Gala','Wedding','December 28, 2025','6:00 PM – 11:30 PM','Taj Palace Ballroom, Mumbai','₹45,000','https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt="" loading="lazy"/><span class="cib tg">💍 Wedding</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Royal Wedding Gala</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Dec 28, 2025</span><span><i class="fa fa-map-marker-alt"></i>Taj Palace, Mumbai</span></div><div class="cf"><span class="cp">₹45,000</span><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-        <div class="card evc reveal stagger-2" data-c="College Fest" data-p="low" onclick="openED('TechFest 2025','College Fest','Jan 15–17, 2026','10 AM – 10 PM','IIT Bombay, Mumbai','₹800','https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="" loading="lazy"/><span class="cib tt">🎓 College Fest</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">TechFest 2025</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Jan 15–17, 2026</span><span><i class="fa fa-map-marker-alt"></i>IIT Bombay</span></div><div class="cf"><span class="cp">₹800</span><button class="bt bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-        <div class="card evc reveal stagger-3" data-c="Corporate" data-p="mid" onclick="openED('Leadership Summit 2025','Corporate','Feb 5–6, 2026','9 AM – 6 PM','The Leela, New Delhi','₹12,000','https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=600&q=80" alt="" loading="lazy"/><span class="cib tv">🏢 Corporate</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Leadership Summit 2025</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Feb 5–6, 2026</span><span><i class="fa fa-map-marker-alt"></i>The Leela, Delhi</span></div><div class="cf"><span class="cp">₹12,000</span><button class="bv bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-        <div class="card evc reveal stagger-4" data-c="Birthday" data-p="mid" onclick="openED('Grand Birthday Bash','Birthday','March 3, 2026','7 PM – Midnight','Park Hyatt, Bengaluru','₹35,000','https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="" loading="lazy"/><span class="cib tp">🎂 Birthday</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Grand Birthday Bash</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Mar 3, 2026</span><span><i class="fa fa-map-marker-alt"></i>Park Hyatt, Bengaluru</span></div><div class="cf"><span class="cp">₹35,000</span><button class="bp bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-        <div class="card evc reveal stagger-5" data-c="Private Party" data-p="mid" onclick="openED('New Year Eve Gala','Private Party','December 31, 2025','9 PM – 2 AM','JW Marriott, Pune','₹8,500','https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80" alt="" loading="lazy"/><span class="cib ts">🎉 Private Party</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">New Year Eve Gala 2026</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Dec 31, 2025</span><span><i class="fa fa-map-marker-alt"></i>JW Marriott, Pune</span></div><div class="cf"><span class="cp">₹8,500</span><button class="bo bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-        <div class="card evc reveal stagger-6" data-c="Destination" data-p="high" onclick="openED('Jaipur Palace Wedding','Destination Wedding','Nov 22, 2025','5 PM – Midnight','Jai Mahal Palace, Jaipur','₹1,20,000','https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=900&q=80')"><div class="cw"><img class="ci" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="" loading="lazy"/><span class="cib to">✈️ Destination</span><span class="clove">♡</span></div><div class="cb"><h3 class="ct">Jaipur Palace Wedding</h3><div class="cm"><span><i class="fa fa-calendar-alt"></i>Nov 22, 2025</span><span><i class="fa fa-map-marker-alt"></i>Jai Mahal, Jaipur</span></div><div class="cf"><span class="cp">₹1,20,000</span><button class="glow-btn bsm" onclick="event.stopPropagation();go('booking')">Book</button></div></div></div>
-      </div>
-      <div id="nores"><i class="fa fa-search-minus"></i><p style="margin-top:.5rem;">No events found for your search.</p><button class="bo bsm" style="margin-top:1rem;" onclick="clrEvF()">Clear Filters</button></div>
-    </div>
-  </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+    <div id="nores"><i class="fa fa-search-minus"></i><p style="margin-top:.5rem;">No events found for your search.</p><button class="bo bsm" style="margin-top:1rem;" onclick="clrEvF()">Clear Filters</button></div>
+  </div></div>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     PORTFOLIO PAGE (NEW)
-     ============================================================ -->
+<!-- PORTFOLIO PAGE -->
 <div id="pg-portfolio" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-images"></i> Our Work</div>
-      <h1 class="pht reveal">Event <span class="gt-violet">Portfolio</span></h1>
-      <p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">A visual showcase of our finest work — 1,200+ events, each a unique masterpiece. Filter by category to explore.</p>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-images"></i> Our Work</div><h1 class="pht reveal">Event <span class="gt-violet">Portfolio</span></h1><p class="reveal" style="color:var(--text2);font-size:1.05rem;line-height:1.85;">A visual showcase of our finest work — 1,200+ events, each a unique masterpiece.</p></div></div>
+  <div style="padding:1.5rem 2rem;background:var(--surface2);border-bottom:1px solid var(--border2);position:sticky;top:70px;z-index:100;"><div class="inn"><div style="display:flex;gap:.75rem;overflow-x:auto;scrollbar-width:none;padding:.25rem 0;"><div class="chip cc1 on" onclick="filterPort('all',this)"><i class="fa fa-th"></i> All</div><div class="chip cc1" onclick="filterPort('wedding',this)">💍 Weddings</div><div class="chip cc2" onclick="filterPort('corporate',this)">🏢 Corporate</div><div class="chip cc3" onclick="filterPort('birthday',this)">🎂 Birthdays</div><div class="chip cc4" onclick="filterPort('concert',this)">🎵 Concerts</div><div class="chip cc5" onclick="filterPort('party',this)">🎉 Parties</div><div class="chip cc6" onclick="filterPort('destination',this)">✈️ Destination</div></div></div></div>
+  <div class="sec"><div class="inn">
+    <div class="port-grid" id="portGrid">
+      <div class="port-item pi-item reveal stagger-1" data-c="wedding" onclick="openLB('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=90')" style="grid-column:span 2;aspect-ratio:16/7;"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=85" alt="Wedding" loading="lazy"/><span class="port-badge tg">💍 Wedding</span><div class="port-overlay"><div class="port-title">Royal Lakeside Wedding — Udaipur</div><div class="port-meta"><i class="fa fa-users" style="margin-right:.3rem;"></i>450 Guests · ₹3.2 Lakh Package · Taj Lake Palace</div></div></div>
+      <div class="port-item pi-item reveal stagger-2" data-c="corporate" onclick="openLB('https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=700&q=85" alt="Corporate" loading="lazy"/><span class="port-badge tv">🏢 Corporate</span><div class="port-overlay"><div class="port-title">Innovation Summit 2024</div><div class="port-meta">750 Delegates · The Leela, Mumbai</div></div></div>
+      <div class="port-item pi-item reveal stagger-3" data-c="birthday" onclick="openLB('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=85" alt="Birthday" loading="lazy"/><span class="port-badge tp">🎂 Birthday</span><div class="port-overlay"><div class="port-title">Bollywood 18th Birthday</div><div class="port-meta">200 Guests · Park Hyatt Goa</div></div></div>
+      <div class="port-item pi-item reveal stagger-1" data-c="concert" onclick="openLB('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=700&q=85" alt="Concert" loading="lazy"/><span class="port-badge ts">🎵 Concert</span><div class="port-overlay"><div class="port-title">Sunburn Festival Arena</div><div class="port-meta">12,000 Attendees · Goa</div></div></div>
+      <div class="port-item pi-item reveal stagger-2" data-c="destination" onclick="openLB('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=85" alt="Destination" loading="lazy"/><span class="port-badge to">✈️ Destination</span><div class="port-overlay"><div class="port-title">Jaipur Palace Wedding</div><div class="port-meta">300 Guests · Jai Mahal Palace</div></div></div>
+      <div class="port-item pi-item reveal stagger-3" data-c="party" onclick="openLB('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&q=90')"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=85" alt="Party" loading="lazy"/><span class="port-badge ts">🎉 Private Party</span><div class="port-overlay"><div class="port-title">NYE Gala — JW Marriott Pune</div><div class="port-meta">450 Guests · New Year's Eve 2025</div></div></div>
+      <div class="port-item pi-item reveal stagger-1" data-c="wedding" onclick="openLB('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=90')" style="grid-column:span 2;aspect-ratio:16/7;"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1000&q=85" alt="Wedding" loading="lazy"/><span class="port-badge tg">💍 Wedding</span><div class="port-overlay"><div class="port-title">Grand Ballroom Wedding — Mumbai</div><div class="port-meta">600 Guests · Grand Hyatt Mumbai</div></div></div>
     </div>
-  </div>
-
-  <!-- Filter chips -->
-  <div style="padding:1.5rem 2rem;background:var(--surface2);border-bottom:1px solid var(--border2);position:sticky;top:70px;z-index:100;">
-    <div class="inn">
-      <div style="display:flex;gap:.75rem;overflow-x:auto;scrollbar-width:none;padding:.25rem 0;">
-        <div class="chip cc1 on" onclick="filterPort('all',this)"><i class="fa fa-th"></i> All</div>
-        <div class="chip cc1" onclick="filterPort('wedding',this)">💍 Weddings</div>
-        <div class="chip cc2" onclick="filterPort('corporate',this)">🏢 Corporate</div>
-        <div class="chip cc3" onclick="filterPort('birthday',this)">🎂 Birthdays</div>
-        <div class="chip cc4" onclick="filterPort('concert',this)">🎵 Concerts</div>
-        <div class="chip cc5" onclick="filterPort('party',this)">🎉 Parties</div>
-        <div class="chip cc6" onclick="filterPort('destination',this)">✈️ Destination</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="inn">
-      <!-- Portfolio masonry-style grid -->
-      <div class="port-grid" id="portGrid">
-
-        <div class="port-item pi-item reveal stagger-1" data-c="wedding" onclick="openLB('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=90')" style="grid-column:span 2;aspect-ratio:16/7;">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1000&q=85" alt="Wedding" loading="lazy"/>
-          <span class="port-badge tg">💍 Wedding</span>
-          <div class="port-overlay">
-            <div class="port-title">Royal Lakeside Wedding — Udaipur</div>
-            <div class="port-meta"><i class="fa fa-users" style="margin-right:.3rem;"></i>450 Guests · ₹3.2 Lakh Package · Taj Lake Palace</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-2" data-c="corporate" onclick="openLB('https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1582192730841-2a682d7375f9?w=700&q=85" alt="Corporate" loading="lazy"/>
-          <span class="port-badge tv">🏢 Corporate</span>
-          <div class="port-overlay">
-            <div class="port-title">Innovation Summit 2024</div>
-            <div class="port-meta">750 Delegates · The Leela, Mumbai</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-3" data-c="birthday" onclick="openLB('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=700&q=85" alt="Birthday" loading="lazy"/>
-          <span class="port-badge tp">🎂 Birthday</span>
-          <div class="port-overlay">
-            <div class="port-title">Bollywood 18th Birthday</div>
-            <div class="port-meta">200 Guests · Park Hyatt Goa</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-1" data-c="concert" onclick="openLB('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=700&q=85" alt="Concert" loading="lazy"/>
-          <span class="port-badge ts">🎵 Concert</span>
-          <div class="port-overlay">
-            <div class="port-title">Sunburn Festival Arena</div>
-            <div class="port-meta">12,000 Attendees · Goa</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-2" data-c="destination" onclick="openLB('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=700&q=85" alt="Destination" loading="lazy"/>
-          <span class="port-badge to">✈️ Destination</span>
-          <div class="port-overlay">
-            <div class="port-title">Jaipur Palace Wedding</div>
-            <div class="port-meta">300 Guests · Jai Mahal Palace</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-3" data-c="party" onclick="openLB('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=85" alt="Party" loading="lazy"/>
-          <span class="port-badge ts">🎉 Private Party</span>
-          <div class="port-overlay">
-            <div class="port-title">NYE Gala — JW Marriott Pune</div>
-            <div class="port-meta">450 Guests · New Year's Eve 2025</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-1" data-c="wedding" onclick="openLB('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&q=90')" style="grid-column:span 2;aspect-ratio:16/7;">
-          <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1000&q=85" alt="Wedding" loading="lazy"/>
-          <span class="port-badge tg">💍 Wedding</span>
-          <div class="port-overlay">
-            <div class="port-title">Grand Ballroom Wedding — Mumbai</div>
-            <div class="port-meta">600 Guests · Grand Hyatt Mumbai · Full décor, AV, catering</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-2" data-c="corporate" onclick="openLB('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=700&q=85" alt="Corporate" loading="lazy"/>
-          <span class="port-badge tv">🏢 Corporate</span>
-          <div class="port-overlay">
-            <div class="port-title">Annual Leadership Gala</div>
-            <div class="port-meta">300 Attendees · The Westin Chennai</div>
-          </div>
-        </div>
-
-        <div class="port-item pi-item reveal stagger-3" data-c="concert" onclick="openLB('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=90')">
-          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=85" alt="Concert" loading="lazy"/>
-          <span class="port-badge ts">🎵 Concert</span>
-          <div class="port-overlay">
-            <div class="port-title">Independent Music Night</div>
-            <div class="port-meta">2,500 Fans · NESCO Mumbai</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Client quotes -->
-      <div style="margin-top:4rem;">
-        <div class="sb reveal"><i class="fa fa-quote-left"></i> Client Voices</div>
-        <h2 class="st reveal">Stories From Our <span class="gt-gold">Portfolio</span></h2>
-        <div class="g3" style="margin-top:2rem;">
-          <div class="port-client-quote reveal stagger-1">
-            <p class="port-quote-text">"The Udaipur wedding was nothing short of a fairytale. The décor, the lake views, the seamless coordination — we still can't believe how perfect it was."</p>
-            <div class="port-quote-author"><img class="port-quote-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80" alt=""/><div><div style="font-weight:700;font-size:.9rem;">Ananya & Rohit Malhotra</div><div style="font-size:.75rem;color:var(--gold);">Udaipur Wedding · 450 Guests</div></div></div>
-          </div>
-          <div class="port-client-quote reveal stagger-2">
-            <p class="port-quote-text">"EventFlow made our product launch look like a Hollywood production. Media coverage exceeded all expectations. Best investment we ever made."</p>
-            <div class="port-quote-author"><img class="port-quote-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80" alt=""/><div><div style="font-weight:700;font-size:.9rem;">Arjun Sharma, CMO</div><div style="font-size:.75rem;color:var(--v3);">Product Launch · TechStart India</div></div></div>
-          </div>
-          <div class="port-client-quote reveal stagger-3">
-            <p class="port-quote-text">"12,000 people, zero incidents. The Goa concert was the smoothest event we've organized in 10 years. EventFlow's crew is the absolute best."</p>
-            <div class="port-quote-author"><img class="port-quote-img" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&q=80" alt=""/><div><div style="font-weight:700;font-size:.9rem;">DJ Khushbu Rao</div><div style="font-size:.75rem;color:var(--sky);">Concert · Sunburn Festival Goa</div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div style="text-align:center;margin-top:3.5rem;">
-        <p style="color:var(--text3);margin-bottom:1.5rem;">Inspired by what we've created? Let's build something extraordinary together.</p>
-        <button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Your Event Now</button>
-      </div>
-
-    </div>
-  </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+    <div style="text-align:center;margin-top:3.5rem;"><button class="glow-btn" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book Your Event Now</button></div>
+  </div></div>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     EVENT DETAIL PAGE
-     ============================================================ -->
+<!-- EVENT DETAIL PAGE -->
 <div id="pg-eventdetail" class="pg">
   <div class="edw">
     <button class="bo bsm" style="margin-bottom:1.5rem;" onclick="go('events')"><i class="fa fa-arrow-left"></i> Back to Events</button>
-    <div class="egall">
-      <img id="ed-main" class="emain" src="" alt="Event"/>
-      <div class="eside">
-        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&q=80" alt="" onclick="openLB(this.src)" loading="lazy"/>
-        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&q=80" alt="" onclick="openLB(this.src)" loading="lazy"/>
-      </div>
-    </div>
+    <div class="egall"><img id="ed-main" class="emain" src="" alt="Event"/><div class="eside"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=500&q=80" alt="" onclick="openLB(this.src)" loading="lazy"/><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=500&q=80" alt="" onclick="openLB(this.src)" loading="lazy"/></div></div>
     <div class="eigrid">
       <div>
         <div id="ed-tag" class="tag" style="margin-bottom:.85rem;"></div>
         <h1 id="ed-title" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;margin-bottom:1rem;line-height:1.2;"></h1>
-        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.75rem;">
-          <span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-calendar-alt" style="color:var(--v3);margin-right:.4rem;"></i><span id="ed-date"></span></span>
-          <span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-clock" style="color:var(--pink);margin-right:.4rem;"></i><span id="ed-time"></span></span>
-          <span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-map-marker-alt" style="color:var(--gold);margin-right:.4rem;"></i><span id="ed-location"></span></span>
-        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.75rem;"><span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-calendar-alt" style="color:var(--teal3);margin-right:.4rem;"></i><span id="ed-date"></span></span><span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-clock" style="color:var(--pink);margin-right:.4rem;"></i><span id="ed-time"></span></span><span style="font-size:.9rem;color:var(--text2);"><i class="fa fa-map-marker-alt" style="color:var(--gold);margin-right:.4rem;"></i><span id="ed-location"></span></span></div>
         <p style="color:var(--text2);line-height:1.9;margin-bottom:2rem;font-size:.95rem;">Experience an extraordinary event meticulously crafted by India's finest event team. Every detail has been thoughtfully curated — from stunning décor and world-class entertainment to exquisite dining and personalized hospitality.</p>
         <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1rem;">What's Included</h3>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;">
-          <li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Premium venue decoration, ambiance & lighting design</li>
-          <li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Professional photography, videography & drone coverage</li>
-          <li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Multi-cuisine gourmet catering & premium beverages</li>
-          <li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Live entertainment, DJ performance & celebrity artists</li>
-        </ul>
-        <div class="f2" style="margin-bottom:1rem;">
-          <div class="fg"><label class="fl">Your Name *</label><input class="fi" id="ed-name" placeholder="Full name"/></div>
-          <div class="fg"><label class="fl">Email *</label><input class="fi" id="ed-email" type="email" placeholder="Email address"/></div>
-        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;"><li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Premium venue decoration, ambiance & lighting design</li><li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Professional photography, videography & drone coverage</li><li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Multi-cuisine gourmet catering & premium beverages</li><li style="font-size:.875rem;color:var(--text2);"><i class="fa fa-check-circle" style="color:var(--teal3);margin-right:.5rem;"></i>Live entertainment, DJ performance & celebrity artists</li></ul>
+        <div class="f2" style="margin-bottom:1rem;"><div class="fg"><label class="fl">Your Name *</label><input class="fi" id="ed-name" placeholder="Full name"/></div><div class="fg"><label class="fl">Email *</label><input class="fi" id="ed-email" type="email" placeholder="Email address"/></div></div>
         <div class="fg"><label class="fl">Phone *</label><input class="fi" id="ed-phone" placeholder="+91 xxxxx xxxxx"/></div>
         <div class="fg"><label class="fl">Special Requests</label><textarea class="fta" id="ed-msg" placeholder="Any special requirements..."></textarea></div>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <button class="glow-btn" onclick="submitED()"><i class="fa fa-calendar-check"></i> Confirm Booking</button>
-          <a class="bwa" href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20book%20this%20event." target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;"><button class="glow-btn" onclick="submitED()"><i class="fa fa-calendar-check"></i> Confirm Booking</button><a class="bwa" href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20book%20this%20event." target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
         <div id="ed-succ" class="sbox" style="display:none;margin-top:1.5rem;"><div class="ico">🎉</div><h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.5rem;">Booking Confirmed!</h3><p style="color:var(--text2);">Our team will reach out within 24 hours.</p></div>
       </div>
       <div class="esb">
@@ -1262,37 +970,18 @@ body.lm .fbar{background:#EDE9FE;}
         <div class="esbp" id="ed-price"></div>
         <button class="glow-btn" style="width:100%;margin-bottom:.85rem;border-radius:var(--r12);" onclick="go('booking')"><i class="fa fa-calendar-check"></i> Book This Event</button>
         <a class="bwa" style="width:100%;justify-content:center;display:inline-flex;" href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border2);">
-          <p style="font-size:.85rem;color:var(--text3);"><i class="fa fa-phone" style="color:var(--v3);margin-right:.4rem;"></i>+91 98765 43210</p>
-          <p style="font-size:.85rem;color:var(--text3);margin-top:.4rem;"><i class="fa fa-envelope" style="color:var(--pink);margin-right:.4rem;"></i>hello@eventflow.in</p>
-        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border2);"><p style="font-size:.85rem;color:var(--text3);"><i class="fa fa-phone" style="color:var(--teal3);margin-right:.4rem;"></i>+91 98765 43210</p><p style="font-size:.85rem;color:var(--text3);margin-top:.4rem;"><i class="fa fa-envelope" style="color:var(--pink);margin-right:.4rem;"></i>hello@eventflow.in</p></div>
       </div>
     </div>
   </div>
   <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow</div></footer>
 </div>
 
-<!-- ============================================================
-     BOOKING PAGE
-     ============================================================ -->
+<!-- BOOKING PAGE -->
 <div id="pg-booking" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-calendar-plus"></i> Let's Begin</div>
-      <h1 class="pht reveal">Book Your <span class="gt-gold">Dream Event</span></h1>
-      <p class="reveal" style="color:var(--text2);font-size:1rem;line-height:1.85;">Fill in the details below and our dedicated event specialist will contact you within 24 hours.</p>
-    </div>
-  </div>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-calendar-plus"></i> Let's Begin</div><h1 class="pht reveal">Book Your <span class="gt-gold">Dream Event</span></h1><p class="reveal" style="color:var(--text2);font-size:1rem;line-height:1.85;">Fill in the details below and our dedicated event specialist will contact you within 24 hours.</p></div></div>
   <div class="bkw">
-    <div id="bk-succ" class="sbox" style="display:none;margin-bottom:2rem;">
-      <div class="ico">🎉</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:.5rem;">Booking Request Received!</h2>
-      <p style="color:var(--text2);margin-bottom:1.75rem;">Our team will contact you within 24 hours to begin planning your extraordinary event.</p>
-      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-        <a class="bwa" href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-        <button class="bo" onclick="resetBK()"><i class="fa fa-redo"></i> New Booking</button>
-      </div>
-    </div>
+    <div id="bk-succ" class="sbox" style="display:none;margin-bottom:2rem;"><div class="ico">🎉</div><h2 style="font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:.5rem;">Booking Request Received!</h2><p style="color:var(--text2);margin-bottom:1.75rem;">Our team will contact you within 24 hours to begin planning your extraordinary event.</p><div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;"><a class="bwa" href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a><button class="bo" onclick="resetBK()"><i class="fa fa-redo"></i> New Booking</button></div></div>
     <div id="bk-form" class="bkc reveal">
       <h2 style="font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;margin-bottom:.5rem;">Event Details</h2>
       <p style="color:var(--text3);font-size:.875rem;margin-bottom:2rem;">All fields marked * are required. We respond within 24 hours.</p>
@@ -1302,105 +991,43 @@ body.lm .fbar{background:#EDE9FE;}
       <div class="f2"><div class="fg"><label class="fl">Preferred City</label><input class="fi" id="b-city" placeholder="Mumbai, Delhi, Goa..."/></div><div class="fg"><label class="fl">Budget Range</label><select class="fs" id="b-budget"><option value="">Select budget</option><option>Under ₹25,000</option><option>₹25,000 – ₹1,00,000</option><option>₹1,00,000 – ₹5,00,000</option><option>Above ₹5,00,000</option></select></div></div>
       <div class="fg"><label class="fl">Message / Requirements</label><textarea class="fta" id="b-msg" style="min-height:130px;" placeholder="Tell us about your dream event..."></textarea></div>
       <div class="ferr" id="b-err"></div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-        <button class="glow-btn" style="flex:1;justify-content:center;border-radius:var(--r12);" onclick="submitBK()"><i class="fa fa-paper-plane"></i> Submit Booking Request</button>
-        <a class="bwa" href="https://wa.me/919876543210?text=Hi!%20I'd%20like%20to%20book%20an%20event." target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;"><button class="glow-btn" style="flex:1;justify-content:center;border-radius:var(--r12);" onclick="submitBK()"><i class="fa fa-paper-plane"></i> Submit Booking Request</button><a class="bwa" href="https://wa.me/919876543210?text=Hi!%20I'd%20like%20to%20book%20an%20event." target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
     </div>
   </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     CONTACT PAGE (ENHANCED with event type selector + AV/decor/catering)
-     ============================================================ -->
+<!-- CONTACT PAGE -->
 <div id="pg-contact" class="pg">
-  <div class="ph">
-    <div class="phi">
-      <div class="sb reveal" style="justify-content:center;"><i class="fa fa-envelope-open-text"></i> Get In Touch</div>
-      <h1 class="pht reveal">Contact <span class="gt-pink">Us</span></h1>
-      <p class="reveal" style="color:var(--text2);font-size:1rem;line-height:1.85;">We'd love to hear about your event vision! Our team responds within 2 hours during business hours.</p>
-    </div>
-  </div>
+  <div class="ph"><div class="phi"><div class="sb reveal" style="justify-content:center;"><i class="fa fa-envelope-open-text"></i> Get In Touch</div><h1 class="pht reveal">Contact <span class="gt-pink">Us</span></h1><p class="reveal" style="color:var(--text2);font-size:1rem;line-height:1.85;">We'd love to hear about your event vision! Our team responds within 2 hours during business hours.</p></div></div>
   <div class="ctgrid">
     <div class="reveal-left">
       <h2 style="font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;margin-bottom:2rem;">Let's <span class="gt-gold">Talk</span></h2>
-      <div class="ci-item"><div class="cii" style="background:rgba(124,58,237,.12);color:var(--v3);"><i class="fa fa-phone-alt"></i></div><div><div class="cilbl">Phone / WhatsApp</div><div class="cival">+91 98765 43210</div></div></div>
-      <div class="ci-item"><div class="cii" style="background:rgba(236,72,153,.12);color:var(--pink);"><i class="fa fa-envelope"></i></div><div><div class="cilbl">Email</div><div class="cival">hello@eventflow.in</div></div></div>
-      <div class="ci-item"><div class="cii" style="background:rgba(255,209,92,.12);color:var(--gold);"><i class="fa fa-map-marker-alt"></i></div><div><div class="cilbl">Head Office</div><div class="cival">BKC, Mumbai 400051, India</div></div></div>
-      <div class="ci-item"><div class="cii" style="background:rgba(13,148,136,.12);color:var(--teal3);"><i class="fa fa-clock"></i></div><div><div class="cilbl">Office Hours</div><div class="cival">Mon–Sat: 9am–8pm · Sun: 10am–4pm</div></div></div>
-      <div class="ci-item"><div class="cii" style="background:rgba(14,165,233,.12);color:var(--sky);"><i class="fa fa-map-pin"></i></div><div><div class="cilbl">Branch Offices</div><div class="cival">Delhi · Bengaluru · Goa · Jaipur · Chennai</div></div></div>
-
-      <!-- Service quick links -->
-      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:1.5rem;margin-top:1rem;">
-        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:1rem;">Quick Inquiries</div>
-        <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
-          <button class="chip cc1" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Wedding Planning')">💍 Wedding</button>
-          <button class="chip cc2" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Corporate Event')">🏢 Corporate</button>
-          <button class="chip cc3" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Birthday Party')">🎂 Birthday</button>
-          <button class="chip cc4" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('College Fest')">🎓 Fest</button>
-          <button class="chip cc5" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Concert / Show')">🎵 Concert</button>
-          <button class="chip cc6" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Destination Wedding')">✈️ Destination</button>
-        </div>
-      </div>
-
-      <!-- Map placeholder -->
+      <div class="ci-item"><div class="cii" style="background:rgba(0,229,255,.12);color:var(--sky);"><i class="fa fa-phone-alt"></i></div><div><div class="cilbl">Phone / WhatsApp</div><div class="cival">+91 98765 43210</div></div></div>
+      <div class="ci-item"><div class="cii" style="background:rgba(255,107,157,.12);color:var(--pink);"><i class="fa fa-envelope"></i></div><div><div class="cilbl">Email</div><div class="cival">hello@eventflow.in</div></div></div>
+      <div class="ci-item"><div class="cii" style="background:rgba(240,192,64,.12);color:var(--gold);"><i class="fa fa-map-marker-alt"></i></div><div><div class="cilbl">Head Office</div><div class="cival">BKC, Mumbai 400051, India</div></div></div>
+      <div class="ci-item"><div class="cii" style="background:rgba(0,201,167,.12);color:var(--teal3);"><i class="fa fa-clock"></i></div><div><div class="cilbl">Office Hours</div><div class="cival">Mon–Sat: 9am–8pm · Sun: 10am–4pm</div></div></div>
+      <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--r20);padding:1.5rem;margin-top:1rem;"><div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:1rem;">Quick Inquiries</div><div style="display:flex;flex-wrap:wrap;gap:.6rem;"><button class="chip cc1" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Wedding Planning')">💍 Wedding</button><button class="chip cc2" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Corporate Event')">🏢 Corporate</button><button class="chip cc3" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Birthday Party')">🎂 Birthday</button><button class="chip cc4" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('College Fest')">🎓 Fest</button><button class="chip cc5" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Concert / Show')">🎵 Concert</button><button class="chip cc6" style="font-size:.75rem;padding:.4rem .9rem;" onclick="prefillContact('Destination Wedding')">✈️ Destination</button></div></div>
       <div class="mpbx"><i class="fa fa-map-marked-alt"></i><p style="font-size:.9rem;">BKC, Mumbai — India's Business Hub</p><p style="font-size:.78rem;margin-top:.3rem;">Satellite offices in 5 cities</p></div>
     </div>
-
     <div class="reveal-right">
       <div style="background:var(--surface);border:1px solid var(--border2);border-radius:var(--r28);padding:2.5rem;">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;margin-bottom:1.5rem;">Send a <span class="gt-violet">Message</span></h3>
         <div id="ct-succ" class="sbox" style="display:none;padding:2rem;"><div class="ico" style="font-size:2.5rem;">✅</div><p style="font-weight:700;margin-top:.5rem;">Message sent! We'll reply within 2 hours.</p></div>
         <div id="ct-form">
-          <div class="f2">
-            <div class="fg"><label class="fl">Full Name *</label><input class="fi" id="c-name" placeholder="Your name"/></div>
-            <div class="fg"><label class="fl">Phone Number</label><input class="fi" id="c-phone" placeholder="+91 xxxxx xxxxx"/></div>
-          </div>
+          <div class="f2"><div class="fg"><label class="fl">Full Name *</label><input class="fi" id="c-name" placeholder="Your name"/></div><div class="fg"><label class="fl">Phone Number</label><input class="fi" id="c-phone" placeholder="+91 xxxxx xxxxx"/></div></div>
           <div class="fg"><label class="fl">Email Address *</label><input class="fi" id="c-email" type="email" placeholder="your@email.com"/></div>
-
-          <!-- Event Type Selector (from spec) -->
-          <div class="fg">
-            <label class="fl">Event Type *</label>
-            <select class="fs" id="c-eventtype">
-              <option value="">Select your event type</option>
-              <option>Wedding</option>
-              <option>Destination Wedding</option>
-              <option>Corporate Event / Conference</option>
-              <option>Product Launch</option>
-              <option>Birthday Party</option>
-              <option>College / Tech Fest</option>
-              <option>Private Party</option>
-              <option>Concert / Live Show</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <!-- AV / Décor / Catering (from spec — planning services) -->
-          <div class="fg">
-            <label class="fl">Services Needed</label>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.25rem;">
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-dec"><input type="checkbox" id="chk-dec" style="width:auto;accent-color:var(--violet);"> 🎨 Décor & Florals</label>
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-av"><input type="checkbox" id="chk-av" style="width:auto;accent-color:var(--violet);"> 🔊 AV & Sound</label>
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-cat"><input type="checkbox" id="chk-cat" style="width:auto;accent-color:var(--violet);"> 🍽️ Catering</label>
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-ph"><input type="checkbox" id="chk-ph" style="width:auto;accent-color:var(--violet);"> 📸 Photography</label>
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-ent"><input type="checkbox" id="chk-ent" style="width:auto;accent-color:var(--violet);"> 🎤 Entertainment</label>
-              <label style="display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text2);cursor:pointer;padding:.5rem .75rem;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--r8);transition:all .2s;" id="lbl-full"><input type="checkbox" id="chk-full" style="width:auto;accent-color:var(--gold);"> ✦ Full Management</label>
-            </div>
-          </div>
-
+          <div class="fg"><label class="fl">Event Type *</label><select class="fs" id="c-eventtype"><option value="">Select your event type</option><option>Wedding</option><option>Destination Wedding</option><option>Corporate Event / Conference</option><option>Product Launch</option><option>Birthday Party</option><option>College / Tech Fest</option><option>Private Party</option><option>Concert / Live Show</option><option>Other</option></select></div>
           <div class="fg"><label class="fl">Message *</label><textarea class="fta" id="c-msg" placeholder="Tell us about your event — date, location, guest count, special requirements..."></textarea></div>
           <button class="glow-btn" style="width:100%;border-radius:var(--r12);" onclick="submitCT()"><i class="fa fa-paper-plane"></i> Send Message</button>
         </div>
       </div>
     </div>
   </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     DASHBOARD PAGE
-     ============================================================ -->
+<!-- DASHBOARD PAGE -->
 <div id="pg-dashboard" class="pg">
   <div class="ph" style="text-align:left;padding:3rem 2rem;">
     <div style="max-width:1260px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
@@ -1411,29 +1038,39 @@ body.lm .fbar{background:#EDE9FE;}
   <div class="dbw">
     <div class="dsg">
       <div class="dsc reveal stagger-1"><div class="dsci di1"><i class="fa fa-calendar-check"></i></div><div class="dscn" style="color:var(--gold);">48</div><div class="dscl">Total Bookings</div></div>
-      <div class="dsc reveal stagger-2"><div class="dsci di2"><i class="fa fa-star"></i></div><div class="dscn" style="color:var(--v3);">12</div><div class="dscl">Events This Month</div></div>
+      <div class="dsc reveal stagger-2"><div class="dsci di2"><i class="fa fa-star"></i></div><div class="dscn" style="color:var(--sky);">12</div><div class="dscl">Events This Month</div></div>
       <div class="dsc reveal stagger-3"><div class="dsci di3"><i class="fa fa-rupee-sign"></i></div><div class="dscn" style="color:var(--teal3);">₹12.4L</div><div class="dscl">Revenue (MTD)</div></div>
       <div class="dsc reveal stagger-4"><div class="dsci di4"><i class="fa fa-heart"></i></div><div class="dscn" style="color:var(--pink);">98%</div><div class="dscl">Satisfaction Score</div></div>
       <div class="dsc reveal stagger-5"><div class="dsci di5"><i class="fa fa-user-plus"></i></div><div class="dscn" style="color:var(--green);">24</div><div class="dscl">New Leads This Week</div></div>
     </div>
-    <div class="tbl reveal">
-      <div class="tblh"><span class="tblt">Recent Bookings</span><input class="fi bsm" placeholder="Search bookings..." style="width:200px;" oninput="srchBK(this.value)"/></div>
-      <div style="overflow-x:auto;"><table><thead><tr><th>Client</th><th>Event</th><th>Date</th><th>Guests</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
-      <tbody id="bkTb">
-        <tr><td>Priya Sharma</td><td>Wedding</td><td>Dec 28, 2025</td><td>350</td><td style="color:var(--gold);font-weight:700;">₹1,20,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
-        <tr><td>Rahul Mehta</td><td>Corporate</td><td>Feb 5, 2026</td><td>500</td><td style="color:var(--gold);font-weight:700;">₹85,000</td><td><span class="bdg bga">Pending</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
-        <tr><td>Sneha Patel</td><td>College Fest</td><td>Jan 15, 2026</td><td>8000</td><td style="color:var(--gold);font-weight:700;">₹2,50,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
-        <tr><td>Kavya Reddy</td><td>Private Party</td><td>Dec 31, 2025</td><td>450</td><td style="color:var(--gold);font-weight:700;">₹68,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
-      </tbody></table></div>
-    </div>
+    <div class="tbl reveal"><div class="tblh"><span class="tblt">Recent Bookings</span><input class="fi bsm" placeholder="Search bookings..." style="width:200px;" oninput="srchBK(this.value)"/></div>
+    <div style="overflow-x:auto;"><table><thead><tr><th>Client</th><th>Event</th><th>Date</th><th>Guests</th><th>Amount</th><th>Status</th><th>Actions</th></tr></thead>
+    <tbody id="bkTb">
+      <tr><td>Priya Sharma</td><td>Wedding</td><td>Dec 28, 2025</td><td>350</td><td style="color:var(--gold);font-weight:700;">₹1,20,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
+      <tr><td>Rahul Mehta</td><td>Corporate</td><td>Feb 5, 2026</td><td>500</td><td style="color:var(--gold);font-weight:700;">₹85,000</td><td><span class="bdg bga">Pending</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
+      <tr><td>Sneha Patel</td><td>College Fest</td><td>Jan 15, 2026</td><td>8000</td><td style="color:var(--gold);font-weight:700;">₹2,50,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
+      <tr><td>Kavya Reddy</td><td>Private Party</td><td>Dec 31, 2025</td><td>450</td><td style="color:var(--gold);font-weight:700;">₹68,000</td><td><span class="bdg bgg">Confirmed</span></td><td><button class="bo bsm" onclick="edBK(this)">Edit</button></td></tr>
+    </tbody></table></div></div>
   </div>
-  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;margin-top:1rem;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--gold);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
+  <footer style="background:var(--bg2);border-top:1px solid var(--border2);padding:2rem;text-align:center;margin-top:1rem;"><div class="fcp">© 2025 EventFlow — <span style="color:var(--teal);cursor:pointer" onclick="go('home')">Back to Home</span></div></footer>
 </div>
 
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
 <script>
+// ====== HERO BACKGROUND IMAGE (injected via JS to keep HTML clean) ======
+(function(){
+  // The hero bg is the uploaded screenshot - we use a beautiful event photo as fallback
+  // and will be replaced with the actual uploaded image via the HERO_BG_DATA variable
+  var heroBg = document.getElementById('heroBg');
+  if(heroBg) {
+    // Try to use Unsplash event photo as the hero background
+    heroBg.style.backgroundImage = "url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1600&q=90')";
+    // If HERO_BG_DATA is set (local file), use it instead
+    if(typeof HERO_BG_DATA !== 'undefined') {
+      heroBg.style.backgroundImage = "url('" + HERO_BG_DATA + "')";
+    }
+  }
+})();
+
 window.addEventListener('load', function(){
   setTimeout(function(){
     var l = document.getElementById('loader');
@@ -1450,7 +1087,7 @@ window.addEventListener('load', function(){
 
 function makePts(){
   var c = document.getElementById('hpts'); if(!c) return;
-  var cols = ['#FFD15C','#7C3AED','#0D9488','#EC4899','#0EA5E9','#F59E0B','#10B981','#F43F5E'];
+  var cols = ['#F0C040','#00C9A7','#00E5FF','#FF6B9D','#FFB347','#00FFB2','#FF4D6D'];
   for(var i=0; i<24; i++){
     var p = document.createElement('div'); p.className = 'pt';
     var s = Math.random()*4+2, l = Math.random()*100, d = Math.random()*12, du = Math.random()*10+8;
@@ -1668,8 +1305,7 @@ function openLB(src){ document.getElementById('lb-img').src=src; document.getEle
 function closeLB(e){ if(!e || e.target!==document.getElementById('lb-img')){ document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; } }
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLB(); });
 
-function delR(btn){ if(confirm('Delete this record?')) btn.closest('tr').remove(); }
-function edBK(btn){ var cells=btn.closest('tr').querySelectorAll('td'); alert('Editing: '+cells[0].textContent+' — '+cells[1].textContent+'\n\nIn production this opens an edit modal.'); }
+function edBK(btn){ var cells=btn.closest('tr').querySelectorAll('td'); alert('Editing: '+cells[0].textContent+' — '+cells[1].textContent); }
 function srchBK(v){ v=v.toLowerCase(); document.querySelectorAll('#bkTb tr').forEach(function(r){ r.style.display=r.textContent.toLowerCase().includes(v)?'':'none'; }); }
 
 function setMinDate(){
